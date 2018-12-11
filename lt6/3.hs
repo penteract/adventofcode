@@ -1,3 +1,4 @@
+import Data.List
 
 data Rect = Rect {
   lef::Int,
@@ -99,4 +100,7 @@ main = do
   --putStr $ unlines $ foldT ff shw tree
   
   putStrLn . show $ foldT (const (+)) (\ w h  a -> if length a <= 1 then 0 else w*h ) tree
+  let unwants =  (nub $ foldT (const union) (\ w h  a -> if length a <= 1 then [] else a )  tree)
+  print $ filter (\x -> not$ x `elem` unwants) $ map head f
+  -- print $ filter (\x -> not$ x `elem` (nub $ foldT (const (++)) (\ w h  a -> if length a <= 1 then [] else a )  tree)) $ map head f
   
