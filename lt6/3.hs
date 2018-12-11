@@ -1,12 +1,5 @@
 import Data.List
 
-data Rect = Rect {
-  lef::Int,
-  rig::Int,
-  top::Int,
-  bot::Int}
-
-
 data Dir = H | V deriving Show
 alt H = V
 alt V = H
@@ -15,20 +8,7 @@ alt V = H
 data Tree a = B Dir Integer (Tree a) (Tree a)  | Leaf a deriving Show
 
 type Pos = (Integer,Integer)
-type Box = (Pos,Pos)
-
-
-
-{-
-Quad a = Quad {
-  tl :: Tree a,
-  tr :: Tree a,
-  bl :: Tree a,
-  br :: Tree a,
-  cutx :: Int,
-  cuty :: Int}
--}
-
+type Box = (Pos,Pos) -- ((left,right),(top,bottom))
 
 
 foldT :: (Dir -> b -> b -> b) -> (Integer-> Integer -> a ->b) -> Tree a -> b
