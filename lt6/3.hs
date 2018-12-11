@@ -4,7 +4,7 @@ data Dir = H | V deriving Show
 alt H = V
 alt V = H
 
--- B V n t1 t2 means l--(n-1),t--b is t1 and n--r,t--b is t2
+-- B H n t1 t2 means l--(n-1),t--b is t1 and n--r,t--b is t2
 data Tree a = B Dir Integer (Tree a) (Tree a)  | Leaf a deriving Show
 
 type Pos = (Integer,Integer)
