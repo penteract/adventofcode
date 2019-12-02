@@ -29,7 +29,8 @@ while sources:
     while l<=j:
         while l+1<len(ground) and ground[l+1][i]==".":
             l+=1
-            ground
+            ground[l][i] = "|"
+            total += 1
         if l+1==len(ground):
             break
         if ground[l+1][i] != ".":
