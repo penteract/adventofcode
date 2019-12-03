@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+while inotifywait -e modify $2
+  do
+  $1 $2
+  done

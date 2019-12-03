@@ -1,0 +1,24 @@
+
+#Usage: aocfetch day year > input 
+#       get particular day's and year's input
+#   or: aocfetch > input
+#       get today's input (wait if started in the 59th minute of an hour)
+
+# remember to add the session key
+
+
+Y=$2
+if [ -z $Y ] ; then Y=2019 ; fi
+
+D=$1
+if [ -z $D ]
+  then
+  # use bc to deal with 01-09 (we want 1-9)
+  D=`date -u +%d | bc`
+
+  # use bc so that 08 and 09 don't break because they get treated as octal
+  if [ `date -u +%M` -eq 59 ] ; then sleep $((60 - `date -u +%S | bc`)) ; fi 
+fi
+
+# find your session key from a browser where you logged in.
+curl -b "session=<secret>" https://adventofcode.com/$Y/day/$D/input
