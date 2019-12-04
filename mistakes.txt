@@ -1,0 +1,12 @@
+Day 1
+Internet disconnecting as the problem started
+Doing +2 rather than -2
+
+Day 2
+Including a square bracket in a submission
+Reusing 'i' as a variable name
+
+Day 3
+
+Day 4
+Not being logged in
