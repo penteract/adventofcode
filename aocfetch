@@ -17,7 +17,9 @@ if [ -z $D ]
   D=`date -u +%d | bc`
 
   # use bc so that 08 and 09 don't break because they get treated as octal
-  if [ `date -u +%M` -eq 59 ] ; then sleep $((60 - `date -u +%S | bc`)) ; fi 
+  if [ `date -u +%M` -eq 59 ] ; then sleep $((61 - `date -u +%S | bc`)) ; fi 
+  # Using 60 rather than 61 can lead to being too early. This surprises me.
+  # Although we don't care if we lose a second
 fi
 
 # find your session key from a browser where you logged in.

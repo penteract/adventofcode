@@ -10,3 +10,7 @@ Day 3
 
 Day 4
 Not being logged in
+
+Day 5
+Using == rather than =
+Not incrementing the instruction pointer (in 2 places)
