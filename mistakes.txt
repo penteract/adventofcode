@@ -14,3 +14,9 @@ Not being logged in
 Day 5
 Using == rather than =
 Not incrementing the instruction pointer (in 2 places)
+
+Day 6
+
+Day 7
+Not updating my haskell intcode interpreter
+Not logging in (although this time it was faster since I'd logged in to github)
