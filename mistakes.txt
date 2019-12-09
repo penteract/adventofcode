@@ -20,3 +20,16 @@ Day 6
 Day 7
 Not updating my haskell intcode interpreter
 Not logging in (although this time it was faster since I'd logged in to github)
+
+Day 8
+Ambiguous variable names
+Doubting my ability to read
+
+While writing Days 5 and 7 in Haskell:
+trying to use typeclasses (It was OK for day 2)
+Not parsing negative numbers (I didn't realise they were in the input and ignored everything but digits)
+
+Day 9:
+Debugging Day 7 in Haskell, starting a minute late
+Using Haskell
+Changing 'get relative to ip' into 'get relative to offset' by adding a the offset to ip and ignoring the address

@@ -69,7 +69,7 @@ disass i xs = if xs == [] then []
      Left err -> [err]
 
 debug :: PState -> IO PState
-debug s@(S ip m inp) = do
+debug s@(S ip m inp off) = do
   putStrLn (dis1 ip  (drop ip $ M.elems m))
   let ((err, out) , s') = examine step s
   if err == Right False then debug s' else return s'
@@ -86,12 +86,13 @@ tests =[
   , ("3,9,7,9,10,9,4,9,99,-1,8",[9],[0],[])
   , ("3,9,7,9,10,9,4,9,99,-1,8",[7],[1],[])
   , ("3,9,7,9,10,9,4,9,99,-1,8",[6],[1],[])
+  , ("109,1,204,-1,1001,100,1,100,1008,100,16,101,1006,101,0,99", [] , getints "109,1,204,-1,1001,100,1,100,1008,100,16,101,1006,101,0,99" ,[])
   ]
 
 test :: IO ()
 test = mapM_ (\ (prog,inp,outchk,memchk) -> do
   let s = newState (getints prog) inp
-  let ((err, out) , (S ip m inp)) = examine runProg s
+  let ((err, out) , (S ip m inp off)) = examine runProg s
   when (err /= Right ()) (putStrLn ("Error: "++ show err))
   when (out /= outchk)  (putStrLn ("Bad output - Expected: "++show outchk++" Actual: "++show out))
   let xs = memchk >>= (\(addr,val) ->
@@ -100,37 +101,42 @@ test = mapM_ (\ (prog,inp,outchk,memchk) -> do
                        )
   when (not (null xs)) (putStrLn$ "Bad memory:\n" ++ unlines xs)
     ) tests
-
+{-
 system code setts = foldl (\ inp sett ->
   let s = newState code sett:inp
       ((err, out) , _) = examine runProg s in out
-  ) [0] setts
+  ) [0] setts -}
 
 main = do
-    f <- readFile "../2/input"
+    {-f <- readFile "../2/input"
     let s =  newState (getints $ head $ lines f) [] --  "3,1,4,0,99"
     let s' = psSetAt 1 12 $ psSetAt 2 2 $ s
-    let ((err, out) , (S ip m inp)) = examine runProg s'
+    let ((err, out) , (S ip m inp off)) = examine runProg s'
     when (m M.! 0 /= 2890696)  (print "test (day 2) failed")
     test
     f <- readFile "../5/input"
     let d =   getints $ head $ lines  f --"3,12,6,12,15,1,13,14,13,4,13,99,-1,0,1,9"
     let s = newState d [1]
-    let ((err, out) , (S ip m inp)) = examine runProg s
+    let ((err, out) , (S ip m inp off)) = examine runProg s
     when (out /= [0,0,0,0,0,0,0,0,0,6761139]) do
       print err
       print out
       print (inp, ip, map (m M.!) [ip-2..ip])
       print$ map snd (M.toList m)
     let s52 = newState d [5]
-    let ((err, out) , (S ip m inp)) = examine runProg s52
+    let ((err, out) , (S ip m inp off)) = examine runProg s52
     when (out /= [9217546]) do
       print err
       print out
       print (inp, ip, map (m M.!) [ip-2..ip])
-      print$ map snd (M.toList m)
-    f <- readFile "../7/input"
-    let d = getints $ head $ lines  f
+      print$ map snd (M.toList m)-}
+    f <- readFile "../9/input"
+    let d =   getints $ head $ lines f -- lines "1102,34915192,34915192,7,4,7,99,0"
+    let s = newState d [2]
+    let ((err, out) , (S ip m inp off)) = examine runProg s
+    print err
+    print out
+
 
 
 
