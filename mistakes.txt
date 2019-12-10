@@ -1,9 +1,9 @@
 Day 1
 Internet disconnecting as the problem started
-Doing +2 rather than -2
+Doing +2 rather than -2 (Wrong submission)
 
 Day 2
-Including a square bracket in a submission
+Including a square bracket in a submission (Wrong submission)
 Reusing 'i' as a variable name
 
 Day 3
@@ -33,3 +33,8 @@ Day 9:
 Debugging Day 7 in Haskell, starting a minute late
 Using Haskell
 Changing 'get relative to ip' into 'get relative to offset' by adding a the offset to ip and ignoring the address
+
+Day 10:
+Not reading the question - it had to be on an asteroid. (Wrong submission)
+
+
