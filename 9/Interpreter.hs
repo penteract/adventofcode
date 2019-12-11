@@ -5,11 +5,11 @@ import Control.Arrow
 import Data.List
 import Data.Maybe
 import Control.Monad
-import Control.Monad.State hiding (get)
+import Control.Monad.State.Strict hiding (get)
 import Control.Monad.Except
-import Control.Monad.Writer
+import Control.Monad.Writer.Strict
 import Control.Applicative
-import qualified Data.Map as M
+import qualified Data.Map.Strict as M
 import Data.Bits
 import System.IO.Unsafe
 import Data.Monoid
@@ -98,7 +98,7 @@ readMode Rel = getRelOff
 
 writeMode :: Mode -> Int -> Int -> M ()
 writeMode Ind = setAt
-writeMode Imm = error "bad mode"
+writeMode Imm = \ y z -> throwError "Can't write to immediate"
 writeMode Rel = setRelOff
 
 getOp :: MonadError String m => Int -> m Op

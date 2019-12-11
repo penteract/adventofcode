@@ -10,8 +10,8 @@ ll=[x for x in lll]
 i=0
 
 
-
 def run(machine):
+    global X,Y,D
     ll,i,inp,rel=machine
     def get(x,mode):
         if mode=="0":
@@ -44,8 +44,9 @@ def run(machine):
                         )
                     i+=4
                 elif opc==3:
-                    assert len(inp)>0
-                    x = inp.pop(0)
+                    #assert len(inp)>0
+                    #x = inp.pop(0)
+                    x = D[X,Y]
                     st(ll[i+1],mode[-1],
                         x)
                     i+=2
@@ -95,15 +96,47 @@ ll=defaultdict(int) # this doesn't seem to affect speed
 for i,x in enumerate(lll):
     ll[i]=x
 i=0
-inp=[2]
+inp=[]
 rel=0
 mach = ll,i,inp,rel
+
+st = "paint"
+D = defaultdict(int)
+W=set()
+dx = 0
+dy = -1
+X=0
+Y=0
+D[X,Y]=1
 while True:
     out,mach = run(mach)
     if out is None:
         break
-    else: print("out:",out)
+    else:
+        #print("out:",out)
+        assert out in [0,1]
+        #print("out:",out)
+        if st=="paint":
+            D[X,Y]=out
+            W.add((X,Y))
+            st="turn"
+        elif st=="turn":
+            st="paint"
+            if out==0: dx,dy = -dy,dx
+            else: dx,dy = dy,-dx
+            X+=dx
+            Y+=dy
+##            for i in range(-20,20):
+##                for j in range(-20,20):
+##                    print(D[i,j]+2*((i,j)==(X,Y)),end="")
+##                prin(t)
+       #     input()
+                
 #resu.append(out[0])
-
+for i in range(-50,50):
+    for j in range(-50,50):
+        print("#" if D[i,j]+2*((i,j)==(X,Y)) else ("." if (i,j) in W else " "),end="")
+    print()
 print("done")
-
+print(st)
+print(len(W),len(D),max((abs(k[0]),k) for k in D))

@@ -7,7 +7,7 @@ import Control.Monad
 import Control.Monad.State hiding (get)
 import Control.Monad.Except
 import Control.Applicative
-import qualified Data.Map as M
+import qualified Data.Map.Strict as M
 import Data.Bits
 import System.IO.Unsafe
 import Data.Monoid
@@ -134,8 +134,8 @@ main = do
     let d =   getints $ head $ lines f -- lines "1102,34915192,34915192,7,4,7,99,0"
     let s = newState d [2]
     let ((err, out) , (S ip m inp off)) = examine runProg s
-    print err
     print out
+    print err
 
 
 

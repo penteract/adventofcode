@@ -6,11 +6,11 @@ import Control.Arrow
 import Data.List
 import Data.Maybe
 import Control.Monad
-import Control.Monad.State
-import Control.Monad.Writer
+import Control.Monad.State.Strict
+import Control.Monad.Writer.Strict
 import Control.Monad.Except
 import Control.Applicative
-import qualified Data.Map as M
+import qualified Data.Map.Strict as M
 import Data.Bits
 import System.IO.Unsafe
 import Data.Monoid
