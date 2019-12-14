@@ -45,3 +45,10 @@ Day 12:
 
 Day 13:
 
+Day 14:
+needed to check how split worked
+Forgot to reset dictionary - did not notice because ORE was not in one table, and fortunately it didn't affect my answer.
+
+
+Other:
+len(str("DAY")) rather than len(str(DAY)) in studyscores.py

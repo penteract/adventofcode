@@ -13,7 +13,9 @@ for n in byname:
 HOUR=60*60
 DAY = HOUR*24
 
-LEN = len("joefarebrother") + len(str("DAY")) + 2
+LEN = len("joefarebrother") + len(str(DAY)) + 1
+
+print(" ".join((b+"").rjust(LEN) for b in ["part1","part2","delta"]))
 
 for day,dat in sorted(bypuzz.items(),key=lambda x:int(x[0])):
   l1=[]
