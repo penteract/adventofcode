@@ -40,3 +40,8 @@ Not reading the question - it had to be on an asteroid. (Wrong submission)
 
 Day 11:
 missing "el"in an elif - changing state twice per output.
+
+Day 12:
+
+Day 13:
+
