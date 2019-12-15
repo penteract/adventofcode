@@ -2,6 +2,7 @@
 !*.*
 !input
 !**/
+!leaderboards/*
 *.o
 *.hi
 *~
