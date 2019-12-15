@@ -52,3 +52,5 @@ Forgot to reset dictionary - did not notice because ORE was not in one table, an
 
 Other:
 len(str("DAY")) rather than len(str(DAY)) in studyscores.py
+
+Day 15:
