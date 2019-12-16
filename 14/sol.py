@@ -59,11 +59,17 @@ print(list(get(n) for n in range(10)))
 
 
 def justgetints(line):
+    line+="\n"
     i=0
+    res=[]
     while i<len(line):
-        if line[i]=="-" and line[i+1] in digits:
-            getint
+        if (line[i]=="-" and line[i+1] in digits) or line[i] in digits:
+            j=i+1
+            while line[j] in digits: j+=1
+            res.append(int(line[i:j]))
+            i=j-1
         i+=1
+    return res
         
 
 

@@ -54,3 +54,6 @@ Other:
 len(str("DAY")) rather than len(str(DAY)) in studyscores.py
 
 Day 15:
+
+Day 16:
+Not doing complexity analysis (block sums would have worked)
