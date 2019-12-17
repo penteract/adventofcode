@@ -57,3 +57,6 @@ Day 15:
 
 Day 16:
 Not doing complexity analysis (block sums would have worked)
+
+Day 17:
+Trying to do part 2 by hand

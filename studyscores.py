@@ -1,3 +1,4 @@
+#! /usr/bin/env python3
 import json
 dat = open("leaderboard.json").read()
 j = json.loads(dat)
