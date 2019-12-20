@@ -60,3 +60,14 @@ Not doing complexity analysis (block sums would have worked)
 
 Day 17:
 Trying to do part 2 by hand
+
+Day 18:
+Leaving a program running while it ate most of my memory.
+Taking too long before starting on the actual solution.
+
+Day 19:
+trying (x-100,y-100) (x-100,y+100) (x+100,y+100), wrong test function, wrong output (order of y and x, not giving top left) Correct thing to test was (x-99,y+99)
+
+Day 20:
+Getting less than 5 hours sleep (expecting the same tomorrow).
+Insufficiently focused when writing input processing.
