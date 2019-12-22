@@ -71,3 +71,9 @@ trying (x-100,y-100) (x-100,y+100) (x+100,y+100), wrong test function, wrong out
 Day 20:
 Getting less than 5 hours sleep (expecting the same tomorrow).
 Insufficiently focused when writing input processing.
+Did not terminate search, so python kept running (did not affect submission time).
+
+Day 22:
+wrong keyboard layout
+Not testing (too many dumb mistakes (4 wrong answers) in part 1).
+Not realising the composition of 2 functions of the form x->(ax+b)%n has that form, hence hoping that there would be a cycle
