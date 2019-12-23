@@ -77,3 +77,6 @@ Day 22:
 wrong keyboard layout
 Not testing (too many dumb mistakes (4 wrong answers) in part 1).
 Not realising the composition of 2 functions of the form x->(ax+b)%n has that form, hence hoping that there would be a cycle
+
+Day 23:
+Bad Typing - yielding a pair twice, not each element of a pair
