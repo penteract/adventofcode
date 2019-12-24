@@ -80,3 +80,10 @@ Not realising the composition of 2 functions of the form x->(ax+b)%n has that fo
 
 Day 23:
 Bad Typing - yielding a pair twice, not each element of a pair
+
+Day 24:
+Part 1: not reading the question - I read it as "born if 2 adjcent" rather than "1 or 2"
+Part 2:
+reusing a variable name 'c'
+Forgetting to adjust indicies when iterating over 'enumerate(m[1:])'
+Constructing a list while iterating over m[:-1] and shrinking it each step
