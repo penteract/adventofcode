@@ -4,7 +4,7 @@
 import string
 from collections import defaultdict
 
-DAYS=22
+DAYS=25
 
 def process(html):
     with open(html) as f:

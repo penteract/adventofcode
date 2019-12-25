@@ -97,4 +97,4 @@ for l in m:
     print()  
 print(sum(sum(sum(x=="#" for x in r) for r in l) for l in m))
 # WRONG:
-# 1922
+# 1922 (test input)

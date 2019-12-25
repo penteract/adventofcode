@@ -54,22 +54,7 @@ def f(fst,snd,n):
     """Where does n go when f(0)=fst and f(1)=snd?"""
     return (fst + (snd-fst)*n)%DS
 
-#Turns out I didn't need this
-#https://www.geeksforgeeks.org/modular-division/
-def modInverse(b,m): 
-    g = gcd(b, m)  
-    if (g != 1): 
-        # print("Inverse doesn't exist")  
-        assert False
-    else:  
-        # If b and m are relatively prime,  
-        # then modulo inverse is b^(m-2) mode m  
-        return pow(b, m - 2, m)
 
-def unf(fst,snd,r):
-    """invert f(fst,snd)"""
-    inv = modInverse((snd-fst)%DS,DS)
-    return ((r-fst)*inv) % DS
 def merge(p1,p2):
     x,y=p1
     z,w=p2
