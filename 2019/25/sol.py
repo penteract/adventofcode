@@ -120,6 +120,13 @@ w="west"
 n="north"
 s="south"
 
+items = """
+- easter egg
+- coin
+- spool of cat6
+- hypercube
+- asterisk""".split("\n- ")
+
 def getinp():
 ##    for c in springcode:
 ##        yield ord(c)
@@ -145,6 +152,7 @@ def tol(xs):
     r.reverse()
     return r
 m={}
+lighter="true"
 l=""
 try:
     while True:
@@ -152,6 +160,10 @@ try:
         x=next(g)
         if x<128:
             print(chr(x),end="")
+            l+=chr(x)
+            if l.endswith("\n"):
+                if ("lighter") in l: lighter=True
+                if ("heavier") in l: lighter=False
         else: print(x)
 except StopIteration:
     print("over")

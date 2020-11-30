@@ -2,7 +2,7 @@
 !*.*
 !input
 !**/
-!leaderboards/*
+!**/leaderboards/*
 *.o
 *.hi
 *~

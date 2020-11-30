@@ -1,0 +1,26 @@
+0:
+003 20 # read -> scratch
+00101 313371337 20 21   1006 21 22  # test for end of input
+9:
+00101 0 20 503  # scratch -> write addr
+00101 1 12 12 # increase  write pointer
+1106 0 0 # JMP Start
+scratch 20:
+0 0
+setup 22:
+01101 0 12 504
+01101 0 2 505
+interp 30:
+0
+01007 -1 3 35
+1105 -1 op  # if *ip < 3, jmp op
+37:
+00108 -1 99 42
+1005 -1 halt
+0 # error
+45 op:
+
+
+500:
+503 # ip
+0 # rel
