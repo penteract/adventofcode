@@ -1,6 +1,6 @@
 from functools import *
 from itertools import *
-inp = 12 #265149
+inp = 265149
 
 g = [[0]*12 for j in range(12)]
 
@@ -9,18 +9,18 @@ r = range(-1,2)
 k=0
 n=0
 def do(i,j):
-    print(i,j)
     t=0
     global n
     n+=1
     for dx in r:
         for dy in r:
-            t+=g[dx][dy]
+            t+=g[i+dx][j+dy]
     if t>inp:
         print (t,n)
         exit()
     #for l in g: print("".join(map(str,l)))
     g[i][j]=t
+    print(i,j,t)
 
 while True:
     k+=1
