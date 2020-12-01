@@ -1,0 +1,2 @@
+Day 1
+Server was overloaded; could have set up something to automate submitting. Didn't matter since the day is unscored and I'm happy not to be bombarding the server with requests when it's down.
