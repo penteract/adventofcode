@@ -2,8 +2,12 @@ Day 1
 Server was overloaded; could have set up something to automate submitting. Didn't matter since the day is unscored and I'm happy not to be bombarding the server with requests when it's down.
 
 Day 2
-Used c[r+1] rather than c[r-1] to work with the fact that r used 1-based indexing.
-Then added code to check that the values were in bounds.
-Then forgot to remove the broken code to check that the values were in bounds
-Then somehow had changed one == to != but not the other.
+Used c[r+1] rather than c[r-1] to work with the fact that r used 1-based indexing.(wrong submission)
+Then added code to check that the values were in bounds.(ws)
+Then forgot to remove the broken code to check that the values were in bounds(ws)
+Then somehow had changed one == to != but not the other.(ws)
 
+Day 3
+Wasn't perfectly ready on time (tried to do a 2017 one as warmup).
+Didn't read the question fully (missed the repeat horizontally bit.
+Got dx and dy mixed up
