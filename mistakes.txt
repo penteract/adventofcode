@@ -11,3 +11,7 @@ Day 3
 Wasn't perfectly ready on time (tried to do a 2017 one as warmup).
 Didn't read the question fully (missed the repeat horizontally bit.
 Got dx and dy mixed up
+
+Day 4
+Used d rather than p (I needed a dictionary). Took a while to spot the mistake because I've assigned to d unnecessarily so that I have a defaultdict handy
+wrote ecl rather than hcl
