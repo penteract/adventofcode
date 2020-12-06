@@ -15,3 +15,11 @@ Got dx and dy mixed up
 Day 4
 Used d rather than p (I needed a dictionary). Took a while to spot the mistake because I've assigned to d unnecessarily so that I have a defaultdict handy
 wrote ecl rather than hcl
+
+Day 5
+
+Day 6
+Input and problem statement took 2 minutes to load
+misreading the question
+ignoring the last group
+(part 2) set.intersection does not mutate
