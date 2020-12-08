@@ -23,3 +23,7 @@ Input and problem statement took 2 minutes to load
 misreading the question
 ignoring the last group
 (part 2) set.intersection does not mutate
+
+Day 7
+Not getting quite enough sleep
+forgetting to multiply by n (after realizing I needed to do it!) (ws)
