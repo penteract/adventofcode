@@ -27,3 +27,8 @@ ignoring the last group
 Day 7
 Not getting quite enough sleep
 forgetting to multiply by n (after realizing I needed to do it!) (ws)
+
+Day 8
+
+Day 9
+part 2 - missing a digit when copying a number (for a check that wasn't even necessary :( )
