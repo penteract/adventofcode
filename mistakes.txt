@@ -32,3 +32,6 @@ Day 8
 
 Day 9
 part 2 - missing a digit when copying a number (for a check that wasn't even necessary :( )
+
+Day 10
+part 1 - not reading/recalling the question fully (and not testing with the sample input sooner) (I missed the last 3-jolt gap)
