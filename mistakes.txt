@@ -35,3 +35,7 @@ part 2 - missing a digit when copying a number (for a check that wasn't even nec
 
 Day 10
 part 1 - not reading/recalling the question fully (and not testing with the sample input sooner) (I missed the last 3-jolt gap)
+
+Day 11
+Not knowing that the argument to defaultdict did not take an argument.
+Overwriting the variable k
