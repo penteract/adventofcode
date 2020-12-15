@@ -46,3 +46,6 @@ printing 2 values without printing their sum (the result) (only cost a few secon
 Day 13
 part 1 - not reading the details of the output carefully enough(ws)
 part 2 - forgetting to negate the starting times
+
+Day 14
+part 2 - forgetting to add a component of the bit manipulation (ws)
