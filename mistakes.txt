@@ -49,3 +49,9 @@ part 2 - forgetting to negate the starting times
 
 Day 14
 part 2 - forgetting to add a component of the bit manipulation (ws)
+
+Day 15
+Not waking up on time
+
+Day 16
+Lots of being slow in small ways (e.g. parsing, using set.remove(x), not set.discard(x))
