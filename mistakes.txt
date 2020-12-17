@@ -55,3 +55,7 @@ Not waking up on time
 
 Day 16
 Lots of being slow in small ways (e.g. parsing, using set.remove(x), not set.discard(x))
+
+Day 17
+thinking range(-1,1) was the sequence [0,1,2] (wrong submission)
+leaving in a print statement that cost several seconds hence a couple of leaderboard positions.
