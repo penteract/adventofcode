@@ -59,3 +59,8 @@ Lots of being slow in small ways (e.g. parsing, using set.remove(x), not set.dis
 Day 17
 thinking range(-1,1) was the sequence [0,1,2] (wrong submission)
 leaving in a print statement that cost several seconds hence a couple of leaderboard positions.
+
+Day 18
+part 1 - Returning a value before combining the last component (ws)
+part 2 - Consuming close-parens multiple times(ws)
+
