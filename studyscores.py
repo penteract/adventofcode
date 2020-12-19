@@ -5,14 +5,15 @@ j = json.loads(dat)
 byname = {j["members"][i]["name"]:j["members"][i] for i in j["members"]}
 bypuzz = {}
 G="get_star_ts"
+HOUR=60*60
+DAY = HOUR*24
+
 for n in byname:
   for l in byname[n]["completion_day_level"]:
     if l not in bypuzz: bypuzz[l]={}
     k = byname[n]["completion_day_level"][l]
     if all(c in k for c in "12"): bypuzz[l][n] = [int(k["1"][G]),int(k["2"][G])]
-
-HOUR=60*60
-DAY = HOUR*24
+    elif all(c in k for c in "1"): bypuzz[l][n] = [int(k["1"][G]),int(k["1"][G])+1000000]
 
 LEN = len("joefarebrother") + len(str(DAY)) + 1
 

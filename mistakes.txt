@@ -64,3 +64,6 @@ Day 18
 part 1 - Returning a value before combining the last component (ws)
 part 2 - Consuming close-parens multiple times(ws)
 
+Day 19
+part 1 - not using regexes soon enough, not knowing them well enough.
+part 2 - writing a+count(42)+count(31) rather than count(42)+a+count(31)
