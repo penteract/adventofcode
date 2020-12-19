@@ -6,7 +6,7 @@ from collections import defaultdict
 
 POINTLESS=[1]
 
-DAYS=[i for i in list(range(1,14+1))]
+DAYS=[i for i in list(range(1,18+1))]
 
 def process(html):
     with open(html) as f:
@@ -101,4 +101,4 @@ print("part 2 - part 1:",rank(lambda x:x.score2-x.score1))
 ##	 -(x.score-x.nointcode)
 ##  ),n=50)
 
-printby((lambda x: x.score), n=140)
+printby((lambda x: x.score), n=150)
