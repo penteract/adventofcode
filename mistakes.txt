@@ -67,3 +67,8 @@ part 2 - Consuming close-parens multiple times(ws)
 Day 19
 part 1 - not using regexes soon enough, not knowing them well enough.
 part 2 - writing a+count(42)+count(31) rather than count(42)+a+count(31)
+
+Day 20
+part 1 - not reading the question carefully enough; writing 1 rather than -1
+part 2 - getting some rotations the wrong way round (for left and right) (ws). I'm surprised I managed to debug this
+Tracking rotations of entire tiles rather than just edges then reconstructing from info about edges might have been easier.
