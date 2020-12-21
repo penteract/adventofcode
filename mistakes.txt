@@ -72,3 +72,7 @@ Day 20
 part 1 - not reading the question carefully enough; writing 1 rather than -1
 part 2 - getting some rotations the wrong way round (for left and right) (ws). I'm surprised I managed to debug this
 Tracking rotations of entire tiles rather than just edges then reconstructing from info about edges might have been easier.
+
+Day 21
+part 1 - Using nondescriptive 1 letter variable names
+         Not reading the problem statement, changing implementation strats a few times
