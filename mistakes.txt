@@ -76,3 +76,6 @@ Tracking rotations of entire tiles rather than just edges then reconstructing fr
 Day 21
 part 1 - Using nondescriptive 1 letter variable names
          Not reading the problem statement, changing implementation strats a few times
+
+Day 22
+part 2 - using >= not <=
