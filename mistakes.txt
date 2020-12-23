@@ -79,3 +79,7 @@ part 1 - Using nondescriptive 1 letter variable names
 
 Day 22
 part 2 - using >= not <=
+
+Day 23
+Including the 1 in the output(ws)
+taking far too long to realise I'm supposed to be using a linked list
