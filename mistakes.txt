@@ -83,3 +83,6 @@ part 2 - using >= not <=
 Day 23
 Including the 1 in the output(ws)
 taking far too long to realise I'm supposed to be using a linked list
+
+Day 24
+Forgetting exactly when I'd done hex grid with compass directions before (2017 day 11, about 2 weeks ago)
