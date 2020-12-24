@@ -6,7 +6,7 @@ from collections import defaultdict
 
 POINTLESS=[1]
 
-DAYS=[i for i in list(range(1,18+1))]
+DAYS=[i for i in list(range(1,24+1))]
 
 def process(html):
     with open(html) as f:
@@ -60,7 +60,7 @@ class User():
     def __str__(self):
         #return f"{self.name:26}: {self.score:4}={self.score1:4}+{self.score2:4} over {self.num}"
         k=";".join(",".join(str(x) for x in y) for y in self.byday)
-        return f"{self.name:26}: {self.score:4}  {k}"
+        return f"{self.name:26}: {self.score:4} {self.score2-self.score1:4} {k}"
     def __eq__(self,other):
         if isinstance(other,str):
             return self.name==other
@@ -101,4 +101,8 @@ print("part 2 - part 1:",rank(lambda x:x.score2-x.score1))
 ##	 -(x.score-x.nointcode)
 ##  ),n=50)
 
-printby((lambda x: x.score), n=150)
+#printby((lambda x: x.score), n=150)
+me = muchdata["penteract"]
+printby((lambda x: x.score2-x.score1), n=100)
+print(me.score2-me.score1)
+print(me.score)
