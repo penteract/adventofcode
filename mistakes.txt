@@ -88,4 +88,5 @@ Day 24
 Forgetting exactly when I'd done hex grid with compass directions before (2017 day 11, about 2 weeks ago)
 
 Day 25
-Not reading the question carefully and not thinking for a moment
+Not reading the question carefully enough
+Forgetting to change the name of a variable
