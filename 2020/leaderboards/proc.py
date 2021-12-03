@@ -4,9 +4,9 @@
 import string
 from collections import defaultdict
 
-POINTLESS=[]
+POINTLESS=[1]
 
-DAYS=[i for i in list(range(1,3+1))]
+DAYS=[i for i in list(range(1,24+1))]
 
 def process(html):
     with open(html) as f:
@@ -82,13 +82,9 @@ def rank(key,user="penteract"):
     return ss.index(user)
 
 def printby(key,n=200):
-    count=0
     for i,x in enumerate(sorted(ll,key=key,reverse=True)):
         if i>n: break
-        if x.score1<x.score2:count+=1
-        
         print(i,x)
-    print("number with greater p2 than p1",count)
 
 print("My rank:",rank(lambda x: x.score))
 #print("Joe's rank:",rank((lambda x: x.score),"joefarebrother"))
@@ -107,6 +103,6 @@ print("part 2 - part 1:",rank(lambda x:x.score2-x.score1))
 
 #printby((lambda x: x.score), n=150)
 me = muchdata["penteract"]
-printby((lambda x: x.score), n=100)
+printby((lambda x: x.score2-x.score1), n=100)
 print(me.score2-me.score1)
 print(me.score)
