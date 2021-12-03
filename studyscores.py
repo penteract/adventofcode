@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 import json
-dat = open("leaderboard.json").read()
+dat = open("419070.json").read()
 j = json.loads(dat)
 byname = {j["members"][i]["name"]:j["members"][i] for i in j["members"]}
 bypuzz = {}
