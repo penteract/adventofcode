@@ -1,49 +1,35 @@
-def mkmap(xss):
-    m={}
-    for y,row in enumerate(xss):
-        for x,c in enumerate(row):
-            m[x,y]=c
-    return m
+from collections import defaultdict
 
-def prmap(mapp):
-    l = list(mapp.keys())
-    m1=max(x for x,y in l)
-    m2=min(x for x,y in l)
-    m3=max(y for x,y in l)
-    m4=min(y for x,y in l)
-    for y in range(m4,m3+1):
-        print("".join("#.@="[mapp[x,y]] if (x,y) in mapp else " " for x in range(m2,m1+1)))
-    print(pos)
+# screen coords, north "up" is negative
+
+compass={"N" : -1j,
+    "E" : 1,
+    "S" : 1j,
+    "W" : -1
+    }
+invcompass = {(-0-1j): 'N', 1: 'E', 1j: 'S', -1: 'W'} #{v:k for k,v in compass.items()}
+arrowvec = {'^': (-0-1j), '>': 1, 'v': 1j, '<': -1}#{a:compass[b] for a,b in zip("^>v<","NESW")}
 
 
-def ufdsget(st,x):
-    k = st[x]
-    if k==x:
-        return x
-    else:
-        k=get(k)
-        st[x]=k
-        return k
+def invd(d):
+    return {v:k for k,v in d.items()}
 
-def ufdsjoin(st,x,y):
-    st[get(x)]=get(y)
-
-def neighbs(p):
-    """neighbours in a 2D grid"""
-    x,y=p
-    for dx in [1,-1]: yield (x+dx,y)
-    for dy in [1,-1]: yield (x,y+dy)
-
-
-def search(startpos,neighbs,end)
-    fr = [(0,startpos)]
-    seen = set()
-
-    while fr:
-        d,nxp = heappop(fr)
-        for k in neighbs(nxp):
+def bfs(neighbs,init):
+    try:
+        frontier=list(init)
+    except e:
+        frontier=[]
+    seen=set(frontier)
+    i=0
+    while i<len(frontier):
+        x=frontier[i]
+        for k in neighbs(x):
             if k not in seen:
+                frontier.append(k)
                 seen.add(k)
-                heappush(fr,(d+1,k))
-        if nxp==end:
-            print("done",d,nxp)
+
+def n4(x):
+    return [x+v for v in compass.values()]
+
+def n8(x):
+    return [x+v*k for v in compass.values() for k in [1,1+1j]]
