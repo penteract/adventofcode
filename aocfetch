@@ -23,4 +23,7 @@ if [ -z $D ]
 fi
 
 # find your session key from a browser where you logged in.
-curl -b "session=<secret>" https://adventofcode.com/$Y/day/$D/input
+#curl -b "session=<secret>" https://adventofcode.com/$Y/day/$D/input
+
+export AOCSession=<secret>
+aocAutoTest $Y $D
