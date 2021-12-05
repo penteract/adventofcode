@@ -3,3 +3,10 @@ off by one error - counting the first value as an increase (wrong submission)
 
 Day 2:
 My IDE was suspended at the start of the contest.
+
+Day 5:
+part 1
+range(a,b+1) is not all integers from a to b if b<a (ws)
+part 2
+y-y2-2*y does not equal y2-y (ws)
+forget to include the end of a range (ws)
