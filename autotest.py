@@ -1,4 +1,50 @@
 #! /usr/bin/env python3
+usage = """
+Python script for advent of code which downloads the problem description,
+attempts to extract sample input and corresponding output,
+then runs sol.py on the sample input whenever sol.py is modified until
+sol.py gives the sample output. When it does, sol.py gets run on the real input
+and if that succeeds, the last printed word gets submitted automatically.
+
+call as `autotest.py {year} {day}` with the
+environment variable $AOCSession set to the value of your session cookie
+
+files used:
+sol.py      This program assumes that your solution for the part you are
+            currently working on is in this file.
+            Run as `python3 sol.py {input}` where {input} is the name of
+            a file from which sol.py is expected to read the input
+            for the day's problem
+            
+input       Your personal input (https://adventofcode.com/{year}/day/{day}/input)
+input1      the automatically extracted sample input
+            By default this is the first non-inline code block.
+            It may be wrong, and if so you must manually edit it and restart this
+            program if you want it to work correctly.
+            If no appropriate sample input is found, you must create this file
+            to use this program.
+            
+output1     the automatically extracted sample output for part 1
+            By default, this is the last highlighed thing at the end of a code tag.
+            It may be wrong, and if so you must manually edit it and restart this
+            program if you want it to work correctly.
+            If no appropriate sample output is found, you must create this file
+            to use this program.
+            
+output2     the automatically extracted sample output for part 2
+1page.html  the page when solving part 1
+2page.html  the page when solving part 2
+badAns      a text file containing a list of answers which have been rejected
+            Hopefully avoids repeatedly submitting wrong answers
+            Does not distinguish between part 1 and part 2
+            
+tmp         stores the output of sol.py on sample input
+            Can be deleted without consequence except while sol.py is running
+            
+tmpreal     stores the output of sol.py on the real input
+            Can be deleted without consequence except while sol.py is running
+"""
+
 import sys
 import os
 import subprocess
@@ -8,13 +54,15 @@ import urllib.request as r
 
 sesh = os.environ["AOCSession"]
 
-print(sesh)
-
 headers={"Cookie":"session="+sesh}
 
 def writeTo(file,content):
     with open(file,mode="w") as f:
         f.write(content)
+
+def readString(file):
+    with open(file) as f:
+        return "".join(f)
 
 def get_or_save(url,file):
     if file is None or not os.path.isfile(file):
@@ -24,7 +72,7 @@ def get_or_save(url,file):
         if file is not None:
             writeTo(file,s)
     else:
-        s="".join(open(file))
+        s=readString(file)
     return s
 
 def submit(part,answer):
@@ -48,9 +96,13 @@ def submit(part,answer):
         if "</article>" in line:
             prnt=False
     return resp,content
-    
+
+for arg in sys.argv[1:]:
+    if "help" in arg or "-h" in arg:
+        print(usage)
+        exit(0)
 if len(sys.argv)<3:
-    raise Exception("not given day and year")
+    raise Exception("not given year and day")
 year=sys.argv[1]
 day=sys.argv[2]
 dayurl = f"https://adventofcode.com/{year}/day/{day}"
@@ -80,6 +132,7 @@ def doPart(part=None):
         part=str(part)
     
     if not os.path.isfile("input1"):
+        print("Trying to find sample input to save in ","input1")
         s=get_or_save(dayurl, part+"page.html")
         
         start=s.find("<pre><code>")
@@ -91,20 +144,29 @@ def doPart(part=None):
         writeTo("input1",eg)
         print("assumed input:")
         print(eg)
-    if not os.path.isfile("output"+part):
+    outputfile = "output"+part
+    if not os.path.isfile(outputfile):
+        print("Trying to find sample output to save in ",outputfile)
         s=get_or_save(dayurl, str(part)+"page.html")
         completed=s.count("Your puzzle answer was")
         if str(completed+1)!=part:
             raise Exception(f"the given part ({part}) cannot be done when {completed} are completed")
         last = s.rfind("</em></code>")
-        assert last!=-1 #can't find output1
+        assert last!=-1 #can't find sample output
         start = s.rfind("<em>",0,last)+len("<em>")
-        assert start >= len("<em>") # can't find start of output1 !!!
+        assert start >= len("<em>") # can't find start of sample output !!!
+        if part=="2" and start<=s.find("--- Part Two ---"):
+            raise Exception("Can't find part 2 sample output")
         sampleout = s[start:last]
-        writeTo("output"+part,sampleout)
+        writeTo(outputfile,sampleout)
     else:
-        sampleout="".join(open("output"+part)).strip()
+        sampleout=readString(outputfile).strip()
     print("assumed output:",sampleout)
+    print("""    suggested code for sol.py:
+import sys
+fname=sys.argv[1] if len(sys.argv)>1 else "input"
+f=list(open(fname))
+    """)
     ns=0
     while True:
         while ns == (ns := os.stat("sol.py").st_mtime_ns):
@@ -114,7 +176,7 @@ def doPart(part=None):
         
         print("==== trying sample input (10 second timeout)")
         p=subprocess.run("timeout 10 python3 sol.py input1 | tee tmp", shell=True)
-        answers = "".join(open("tmp")).split()
+        answers = readString("tmp").split()
         if p.returncode==0 and len(answers)>=1 and answers[-1]==sampleout:
             print("==== trying real input (no timeout)")
             p=subprocess.run("python3 sol.py input | tee tmpreal", shell=True)
@@ -122,7 +184,7 @@ def doPart(part=None):
             if p.returncode:
                 print("error when called on real input")
                 continue
-            answer = "".join(open("tmpreal")).split()
+            answer = readString("tmpreal").split()
             if len(answer)<1:
                 print("answer is empty when called on real input")
                 continue
