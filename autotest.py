@@ -191,7 +191,7 @@ f=list(open(fname))
             answer=answer[-1]
             #do some checks on answer
             if(len(answer)<=3):
-                print(repr(anwser),"looks too small. Not submitting")
+                print(repr(answer),"looks too small. Not submitting")
             elif answer==sampleout:
                 print(repr(answer), "is the same as the example output. Not submitting")
             elif answer in bad_answers:

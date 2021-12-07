@@ -6,7 +6,7 @@ from collections import defaultdict
 
 POINTLESS=[]
 
-DAYS=[i for i in list(range(1,3+1))]
+DAYS=[i for i in list(range(1,6+1))]
 
 def process(html):
     with open(html) as f:
