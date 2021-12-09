@@ -10,3 +10,9 @@ range(a,b+1) is not all integers from a to b if b<a (ws)
 part 2
 y-y2-2*y does not equal y2-y (ws)
 forget to include the end of a range (ws)
+
+Day 8:
+Implementing a solution that was harder than necessary (both parts)
+
+Day 9:
+forgetting to remove an else clause from a loop after a break
