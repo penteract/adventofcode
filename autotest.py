@@ -75,6 +75,10 @@ def get_or_save(url,file):
         s=readString(file)
     return s
 
+def tee_with_exitcode(command,file):
+    #print (f"(exit `(({command} 2>&1 ; echo $? >&3) | tee ${file} >&4) 3>&1` ) 4>&1")
+    return subprocess.run(f"(exit `(({command} 2>&1 ; echo $? >&3) | tee {file} >&4) 3>&1` ) 4>&1", shell=True)
+
 def submit(part,answer):
     global submittime
     url = f"https://adventofcode.com/{year}/day/{day}/answer"
@@ -175,11 +179,13 @@ f=list(open(fname))
         ns=os.stat("sol.py").st_mtime_ns
         
         print("==== trying sample input (10 second timeout)")
-        p=subprocess.run("timeout 10 python3 sol.py input1 | tee tmp", shell=True)
+        p=tee_with_exitcode("timeout 10 python3 sol.py input1 2>&1", "tmp")
+        #subprocess.run("(exit `((timeout 10 python3 sol.py input1 2>&1 ; echo $? >&3) | tee tmp >&4) 3>&1) 4>&1", shell=True)
         answers = readString("tmp").split()
         if p.returncode==0 and len(answers)>=1 and answers[-1]==sampleout:
             print("==== trying real input (no timeout)")
-            p=subprocess.run("python3 sol.py input | tee tmpreal", shell=True)
+            #p=subprocess.run("python3 sol.py input | tee tmpreal", shell=True)
+            p=tee_with_exitcode("python3 sol.py input","tmpreal")
             print("==== end of program output")
             if p.returncode:
                 print("error when called on real input")
@@ -197,7 +203,7 @@ f=list(open(fname))
             elif answer in bad_answers:
                 print(repr(answer), "previously submitted and failed. Not submitting")
             else:
-                if not bad_answers or input("Do you want to submit",repr(answer),"(y/n)?")=="y":
+                if not bad_answers or input("Do you want to submit "+repr(answer)+" (y/n)?")=="y":
                     print("submitting answer:",repr(answer))
                     resp,content = submit(part=part,answer=answer)
                     if "That's the right answer!" in content:

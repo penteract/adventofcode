@@ -2,8 +2,8 @@
 !*.*
 !**/
 !**/leaderboards/*
-page1.html
-page2.html
+1page.html
+2page.html
 *.o
 *.hi
 *~
