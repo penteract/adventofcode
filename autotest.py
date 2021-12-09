@@ -196,7 +196,7 @@ f=list(open(fname))
                 continue
             answer=answer[-1]
             #do some checks on answer
-            if(len(answer)<=3):
+            if(len(answer)<=2):
                 print(repr(answer),"looks too small. Not submitting")
             elif answer==sampleout:
                 print(repr(answer), "is the same as the example output. Not submitting")
