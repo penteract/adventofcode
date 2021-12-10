@@ -111,7 +111,8 @@ year=sys.argv[1]
 day=sys.argv[2]
 dayurl = f"https://adventofcode.com/{year}/day/{day}"
 
-get_or_save(dayurl + "/input", "input")
+print("PRIVATE INPUT:")
+print(get_or_save(dayurl + "/input", "input"))
 
 bad_answers=set()
 if os.path.isfile("wrongAnswers"):
@@ -146,7 +147,7 @@ def doPart(part=None):
 
         eg = s[start+len("<pre><code>"):end].replace("<em>","").replace("</em>","")
         writeTo("input1",eg)
-        print("assumed input:")
+        print("sample input:")
         print(eg)
     outputfile = "output"+part
     if not os.path.isfile(outputfile):
