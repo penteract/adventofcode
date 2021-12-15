@@ -1,12 +1,12 @@
 #! /usr/bin/env python3
-#curl https://adventofcode.com/2019/leaderboard/day/[1-15] -O
+#curl https://adventofcode.com/2021/leaderboard/day/[1-15] -O
 
 import string
 from collections import defaultdict
 
 POINTLESS=[]
 
-DAYS=[i for i in list(range(1,6+1))]
+DAYS=[i for i in list(range(1,12+1))]
 
 def process(html):
     with open(html) as f:

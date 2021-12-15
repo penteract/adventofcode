@@ -24,3 +24,11 @@ Day 12:
 not reading "single" in "you might have time to visit a single small cave twice"
 not reading "the caves named start and end can only be visited exactly once each"
   realising I didn't allow visiting end twice and adding some code to allow it
+taking too long to start writing a solution
+
+Day 13:
+folding downwards rather than upwards
+hardcoding terrible (large and based on incorrect output) constants for printing then making my terminal >1000 characters wide to see the output
+
+day 14:
+using 1 rather than the value in the dictionary (in 2 different places)

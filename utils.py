@@ -52,3 +52,8 @@ def ufdsget(x,st):
 
 def ufdsjoin(x,y,st):
     st[ufdsget(x,st)]=ufdsget(y,st)
+def prgrid(d):
+    for y in range(int(min(x.imag for x in d)),  int(max(x.imag for x in d ))+1):
+        print()
+        for x in range(int(min(x.real for x in d)),int(max(x.real for x in d )+1)):
+            print("#" if y*1j+x in d else " ",end="")

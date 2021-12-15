@@ -146,6 +146,8 @@ def doPart(part=None):
         assert end!=-1 # can't find end of pre block !!!
 
         eg = s[start+len("<pre><code>"):end].replace("<em>","").replace("</em>","")
+        eg = eg.replace("<em>", "").replace("</em>", "")
+        eg = eg.replace("&gt;", ">").replace("&lt;", "<").replace("&amp;", "&")
         writeTo("input1",eg)
         print("sample input:")
         print(eg)
@@ -209,6 +211,7 @@ f=list(open(fname))
                     resp,content = submit(part=part,answer=answer)
                     if "That's the right answer!" in content:
                         succeeded=True
+                        os.system(f"cp sol.py part{part}sol.py")
                         break
                     elif "That's not the right answer" in content:
                         addBad(answer)
