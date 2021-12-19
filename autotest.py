@@ -139,9 +139,14 @@ def sanitize(eg):
     
 def get_out(s):
     last = s.rfind("</em></code>")
-    assert last!=-1 #can't find sample output
-    start = s.rfind("<em>",0,last)+len("<em>")
-    assert start >= len("<em>") # can't find start of sample output !!!
+    if last == -1:
+        last = s.rfind("</code></em>")
+        assert last!=-1 #can't find sample output
+        start = s.rfind("<code>",0,last)+len("<code>")
+        assert start >= len("<code>") # can't find start of sample output !!!
+    else:
+        start = s.rfind("<em>",0,last)+len("<em>")
+        assert start >= len("<em>") # can't find start of sample output !!!
     return start,last
 
 def surrounding_tag(s,i,tag):
@@ -155,6 +160,8 @@ def surrounding_tag(s,i,tag):
         return False
     return (opn,close)
 
+#potentially problematic examples
+#https://adventofcode.com/2020/day/2
 def find_list(s,start,last,part):
     t = surrounding_tag(s,start,"ul")
     if not t:
@@ -167,13 +174,16 @@ def find_list(s,start,last,part):
             start,end = get_out(line)
         except Exception:
             continue
-        out = line[start:end]
+        out = sanitize(line[start:end])
         start=line.find("<code>")+len("<code>")
         if start<len("<code>"):
             continue
         end=line.find("</code>")
         assert end!=-1 # no matching tag
         inp = line[start:end]
+        if "<" in inp: #input contains a tag - this also 
+            continue
+        inp = sanitize(inp)
         if len(inp)<=1:
             continue
         i=len(examples)+1
@@ -218,6 +228,7 @@ def find_examples(part):
                 if part=="1":
                     sampleout = out
                 break
+            i+=1
         if examples:
             return examples
     if not os.path.isfile("input1"):
