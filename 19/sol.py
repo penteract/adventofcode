@@ -68,8 +68,14 @@ def m(tri):
     return sum(abs(x) for x in tri)
 for a,b,k in found:
     s=s.union(set(k))
+    mn=(10**8,None)
     for aa,bb,kk in found:
-        mx=max([mx,m(diff(b,bb))])
+        df = diff(b,bb)
+        mdf = m(df)
+        mx=max([mx,mdf])
+        if 0<mdf<mn[0]:
+            mn = (mdf,df)
+    print(mn)
 print(len(s))
 print(mx)
 #print(found[1])

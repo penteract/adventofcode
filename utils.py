@@ -57,3 +57,26 @@ def prgrid(d):
         print()
         for x in range(int(min(x.real for x in d)),int(max(x.real for x in d )+1)):
             print("#" if y*1j+x in d else " ",end="")
+
+from heapq import *
+
+def dj(start,pths,done=None):
+    """
+Djikstra's algorithm. given an initial vertex and a function from nodes to lists of neighbours with distances,
+return a dictionary of shortest paths from the initial vertex.
+"""
+    seen=set()
+    pq = [(0,start)]
+    results={}
+    while pq:
+        k,x = heappop(pq)
+        results[x]=k
+        if done and done(x):
+            return results
+        if x not in seen:
+            for d,y in pths(x):
+                if y not in seen:
+                    heappush((k+d,y))
+    return results
+            
+    

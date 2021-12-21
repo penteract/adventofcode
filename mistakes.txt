@@ -40,3 +40,10 @@ not reading the question fully (only split when there are no available explodes)
 
 day 19:
 copying the previous day's files with test cases and not deleting the test cases
+
+Day 20:
+The obvious assumption :)
+
+Day 21:
+Needing to rewrite part 1 solution with all bugs and more for part 2.
+Counting dice roll sum frequencies in head, getting it wrong or mistyping one.
