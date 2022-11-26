@@ -257,6 +257,9 @@ def doPart(part=None):
         writeTo(part+"page.html",s)
     else:
         part=str(part)
+    if part=="2" and day=="25":
+        submit(part="2", answer="0")
+        
     examples = find_examples(part)
     sampleouts = { x[1] for x in examples}
     
