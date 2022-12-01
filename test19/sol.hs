@@ -254,16 +254,20 @@ solveSimple = el $ [
   -- ++ [map (\ t -> (foldname++":"++show t, fn . map (eval t . (:[])) ))  (trees 1)
   --      | (foldname,fn) <- [("max",maximum),("min",minimum),("min*max",(\ xs -> minimum xs * maximum xs))]]
 
+lg :: Int -> Int
+lg n = if n<=1 then 1 else 1+ lg (n`div`2)
 
 handleInp :: String -> String -> Int -> (String,Int)
 handleInp tests reals testout =
     let rd = readInp tests
         testn = rd tests
         realn = rd reals
-        ctn = concat testn in
-            if length testn == 1 || all ((==1).length) testn then head [(s,f (concat realn)) | (s,f)<-solveSimple, f ctn==testout]
-            else if ((==2).length) testn then head [ (s,f realn) | (s,f) <- rr [solvePairsUnsafe, solveGeneric], f testn == testout ]
-            else head [ (s,f realn) | (s,f) <- solveGeneric, f testn == testout ]
+        ctn = concat testn 
+        maxtries = testout*(lg testout) -- If there weren't any duplicate functions, this might be more like testout/10 (to give at least 90% chance that if we're wrong we don't submit anything)
+         in
+            if length testn == 1 || all ((==1).length) testn then head [(s,f (concat realn)) | (s,f)<-take maxtries solveSimple, f ctn==testout]
+            else if ((==2).length) testn then head [ (s,f realn) | (s,f) <- take (maxtries*2) (rr [solvePairsUnsafe, solveGeneric]), f testn == testout ]
+            else head [ (s,f realn) | (s,f) <- take maxtries solveGeneric, f testn == testout ]
 
 
 main :: IO ()
