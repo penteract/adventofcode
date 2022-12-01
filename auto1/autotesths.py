@@ -273,8 +273,8 @@ def doPart(part=None):
         
         error=None
         for inp,sampleout in examples:
-            print("==== trying sample input (10 second timeout)")
-            p=tee_with_exitcode(f"ghc sol.hs && timeout 10 ./sol {inp} 2>&1", "tmp")
+            print("==== trying sample input (20 second timeout)")
+            p=tee_with_exitcode(f"ghc sol.hs && timeout 20 ./sol {inp} 2>&1", "tmp")
             #subprocess.run("(exit `((timeout 10 python3 sol.py input1 2>&1 ; echo $? >&3) | tee tmp >&4) 3>&1) 4>&1", shell=True)
             answers = readString("tmp").split()
             if not (p.returncode==0 and len(answers)>=1 and answers[-1]==sampleout):
