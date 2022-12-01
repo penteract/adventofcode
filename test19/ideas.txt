@@ -1,0 +1,28 @@
+Day 1 part 1
+
+Assumptions about the input:
+- it is a list of numbers 
+  completely true since 2019;
+  in 2018 the numbers had +/- in front of them;
+  in 2017, it could be seen as a list of digits
+
+- it could be a list of pairs of numbers
+
+(it could be more, or it could involve lists of varying lengths
+   but I'm not sure how useful it would be to handle that)
+- "sum the products of each line" is the most likely sort of thing
+
+
+Gimmicks:
+It's always a fold (exception: 2020)
+It's usually 'sum . map f' for some function 'f'
+- 2021: process zip(l,l[1:]) (strictness of inequality didn't matter for my input)
+- 2019: uses 'div'
+- 2018: it's just a sum
+- 2017: process zip(l,l[1:]+l[:1])
+- 2015: a sum of a function of characters
+
+this year:
+ might be completely different - 2016 is map-based, 2020 is not a trivial fold
+ might involve 'mod'
+ differing things on alternate lines
