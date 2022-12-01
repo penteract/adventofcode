@@ -282,7 +282,7 @@ main = do
     --             (zip [1..] $ map (\ t -> (t, sum . map (eval t) . map (:[])))  (el [ (eTrees i (Null,False) [Var 0] (map Num consts)) | i <- [1..]]))
     --print (a sampleInp)
     let (n,r) = handleInp sampleIn c sampleOut
-    putStr n
+    putStrLn n
     print r
     --print (fst a,fst (snd a))
     --print (snd (snd a) inp)
