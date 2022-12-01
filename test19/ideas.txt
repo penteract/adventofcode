@@ -5,6 +5,11 @@ Assumptions about the input:
   completely true since 2019;
   in 2018 the numbers had +/- in front of them;
   in 2017, it could be seen as a list of digits
+- it is very simple to program, without gotchas
+- It's always a fold (exception: 2020)
+  it's always solvable in near linear time (although for 2020 that's not quite true and the simple solution is not linear time)
+
+
 
 - it could be a list of pairs of numbers
 
@@ -14,7 +19,6 @@ Assumptions about the input:
 
 
 Gimmicks:
-It's always a fold (exception: 2020)
 It's usually 'sum . map f' for some function 'f'
 - 2021: process zip(l,l[1:]) (strictness of inequality didn't matter for my input)
 - 2019: uses 'div'
@@ -23,6 +27,10 @@ It's usually 'sum . map f' for some function 'f'
 - 2015: a sum of a function of characters
 
 this year:
- might be completely different - 2016 is map-based, 2020 is not a trivial fold
+ might be completely different - 2016 is map-based, 2020 is not best seen as a fold
  might involve 'mod'
- differing things on alternate lines
+ different things on alternate lines
+ max*min?
+ max(map f l) or min (map f l)
+  (if there are multiple per line) sum(f(max(row)) for row in line) (or min in place of max)
+ somthing involving maximumBy, minimumBy?
