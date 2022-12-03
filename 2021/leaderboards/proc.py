@@ -6,7 +6,7 @@ from collections import defaultdict
 
 POINTLESS=[]
 
-DAYS=[i for i in list(range(1,2+1))]
+DAYS=[i for i in list(range(1,20+1))]
 
 def process(html):
     with open(html) as f:
@@ -116,6 +116,3 @@ me = muchdata["penteract"]
 printby((lambda x: x.score), n=100)
 print(me.score2-me.score1)
 print(me.score)
-
-#[x for x in muchdata.values() if x.score>me.score and (x.score - x.byday[2-1][1]) < me.score and x.byday[2-1][1]< ]
-
