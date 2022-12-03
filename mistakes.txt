@@ -3,3 +3,6 @@ Failing to realise quickly that the autotester had downloaded the wrong tests
 
 day 2
 Not including "import sys" in my starting code
+
+day 3
+being insufficiently familiar with python (s1.intersection(s2) == s1&s2)
