@@ -1,3 +1,5 @@
 day 1
 Failing to realise quickly that the autotester had downloaded the wrong tests
 
+day 2
+Not including "import sys" in my starting code
