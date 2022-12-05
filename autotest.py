@@ -17,39 +17,39 @@ f=list(open(fname))
 ```
 
 files used:
-sol.py      This program assumes that your solution for the part you are
-            currently working on is in this file.
-            Run as `python3 sol.py {input}` where {input} is the name of
-            a file from which sol.py is expected to read the input
-            for the day's problem
+sol.py       This program assumes that your solution for the part you are
+             currently working on is in this file.
+             Run as `python3 sol.py {input}` where {input} is the name of
+             a file from which sol.py is expected to read the input
+             for the day's problem
             
-input       Your personal input (https://adventofcode.com/{year}/day/{day}/input)
-input1      the automatically extracted sample input
-            By default this is the first non-inline code block.
-            It may be wrong, and if so you must manually edit it and restart this
-            program if you want it to work correctly.
-            If no appropriate sample input is found, you must create this file
-            to use this program.
+input        Your personal input (https://adventofcode.com/{year}/day/{day}/input)
+input1       the automatically extracted sample input
+             By default this is the first non-inline code block.
+             It may be wrong, and if so you must manually edit it and restart this
+             program if you want it to work correctly.
+             If no appropriate sample input is found, you must create this file
+             to use this program.
             
-output1     the automatically extracted sample output for part 1
-            By default, this is the last highlighed thing at the end of a code tag.
-            It may be wrong, and if so you must manually edit it and restart this
-            program if you want it to work correctly.
-            If no appropriate sample output is found, you must create this file
-            to use this program.
+output1      the automatically extracted sample output for part 1
+             By default, this is the last highlighed thing at the end of a code tag.
+             It may be wrong, and if so you must manually edit it and restart this
+             program if you want it to work correctly.
+             If no appropriate sample output is found, you must create this file
+             to use this program.
             
-output2     the automatically extracted sample output for part 2
-1page.html  the page when solving part 1
-2page.html  the page when solving part 2
-badAns      a text file containing a list of answers which have been rejected
-            Hopefully avoids repeatedly submitting wrong answers
-            Does not distinguish between part 1 and part 2
+output2      the automatically extracted sample output for part 2
+1page.html   the page when solving part 1
+2page.html   the page when solving part 2
+wrongAnswers a text file containing a list of answers which have been rejected
+             Hopefully avoids repeatedly submitting wrong answers
+             Does not distinguish between part 1 and part 2
             
-tmp         stores the output of sol.py on sample input
-            Can be deleted without consequence except while sol.py is running
+tmp          stores the output of sol.py on sample input
+             Can be deleted without consequence except while sol.py is running
             
-tmpreal     stores the output of sol.py on the real input
-            Can be deleted without consequence except while sol.py is running
+tmpreal      stores the output of sol.py on the real input
+             Can be deleted without consequence except while sol.py is running
 """
 
 import sys
@@ -61,7 +61,7 @@ import urllib.request as r
 print(sys.argv[0])
 sesh = os.environ["AOCSession"]
 
-headers={"Cookie":"session="+sesh}
+headers={"Cookie":"session="+sesh, "User-Agent":"autotest.py (https://github.com/penteract/adventofcode)"}
 
 def writeTo(file,content):
     with open(file,mode="w") as f:
@@ -113,6 +113,7 @@ for arg in sys.argv[1:]:
         print(usage)
         exit(0)
 if len(sys.argv)<3:
+    #sys.argv=[None,"2022","1"]
     raise Exception("not given year and day")
 year=sys.argv[1]
 day=sys.argv[2]
@@ -122,25 +123,65 @@ print("PRIVATE INPUT:")
 print(get_or_save(dayurl + "/input", "input"))
 
 bad_answers=set()
+bad_toohigh = None
+bad_toolow = None
+
+def fromMaybe(x,mx):
+    return (mx if mx is not None else x)
+
 if os.path.isfile("wrongAnswers"):
     with open("wrongAnswers") as f:
         for line in f:
+            if "[TOO HIGH]" in line:
+                line = line.split()[0]
+                bad_toohigh = min(int(line), fromMaybe(math.inf, bad_toohigh))
+            if "[TOO LOW]" in line:
+                line = line.split()[0]
+                bad_toolow = max(int(line), fromMaybe(-math.inf, bad_toolow))
             bad_answers.add(line.strip())
 
-def addBad(ans):
+def add_bad(ans, content):
+    global bad_toohigh, bad_toolow
+    extra = ""
+    if "too high" in content:
+        bad_toohigh = min(int(ans), fromMaybe(math.inf, bad_toohigh))
+        extra = " [TOO HIGH]"
+    if "too low" in content:
+        bad_toolow = max(int(ans), fromMaybe(-math.inf, bad_toolow))
+        extra = " [TOO LOW]"
     bad_answers.add(ans)
-    with open("wrongAnswers",mode="a") as f:
-        print(ans,file=f)
+    with open("wrongAnswers", mode="a") as f:
+        print(ans + extra, file=f)
                   
 def sanitize(eg):
     eg = eg.replace("<em>", "").replace("</em>", "")
     eg = eg.replace("&gt;", ">").replace("&lt;", "<").replace("&amp;", "&")
     return eg
-    
+
+"""
+An observational study on the tags used for the correct output given the sample input:
+Prior to 2020, there's no hope (there wasn't always a clear sample input and sample output)
+Since 2020, the sample output has usually been the last <em> tag inside a <code> tag.
+
+
+exceptions
+<em><code>ans</code></em>
+2020 day 8, 9, 10 (and perhaps the rest of the year)
+2021 day 1
+2022 day 1
+
+
+In 2020 there are some days with multiple exaples
+2020 day 10 part 1
+
+
+2020 day 1, there is a <code> tag in the middle of an <em> tag which is not an answer
+"""
 def get_out(s):
     last = s.rfind("</em></code>")
-    if last == -1:
-        last = s.rfind("</code></em>")
+    last_ = s.rfind("</code></em>")
+    if last <= last_:
+        last = last_
         assert last!=-1 #can't find sample output
         start = s.rfind("<code>",0,last)+len("<code>")
         assert start >= len("<code>") # can't find start of sample output !!!
@@ -162,6 +203,7 @@ def surrounding_tag(s,i,tag):
 
 #potentially problematic examples
 #https://adventofcode.com/2020/day/2
+#https://adventofcode.com/2022/day/1
 def find_list(s,start,last,part):
     t = surrounding_tag(s,start,"ul")
     if not t:
@@ -300,6 +342,12 @@ def doPart(part=None):
                 print(repr(answer), "is the same as the example output. Not submitting")
             elif answer in bad_answers:
                 print(repr(answer), "previously submitted and failed. Not submitting")
+            elif bad_toohigh is not None and int(answer) >= bad_toohigh:
+                print(repr(answer),
+                      f"is too high; as {bad_toohigh} was. Not submitting.")
+            elif bad_toolow is not None and int(answer) <= bad_toolow:
+                print(repr(answer),
+                      f"is too low; as {bad_toolow} was. Not submitting.")
             else:
                 if not bad_answers or input("Do you want to submit "+repr(answer)+" (y/n)?")=="y":
                     print("submitting answer:",repr(answer))
@@ -309,7 +357,7 @@ def doPart(part=None):
                         os.system(f"cp sol.py part{part}sol.py")
                         break
                     elif "That's not the right answer" in content:
-                        addBad(answer)
+                        add_bad(answer,content)
                     else:
                         print("did not recognise success or incorrect, may be timeout or blank input or already completed")
         else:
