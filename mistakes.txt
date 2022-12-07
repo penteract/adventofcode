@@ -9,3 +9,7 @@ being insufficiently familiar with python (s1.intersection(s2) == s1&s2)
 
 day 4
 not turning strings into integers (wrong answer)
+
+day 5
+forgetting about stripping space from input lines,
+failing to realise the code had succeeded and it was now testing against part 2
