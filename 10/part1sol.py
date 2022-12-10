@@ -60,7 +60,21 @@ try:
 except Exception:
     pass
 
+x=1
+cycles=1
 s=0
 for (line,ints) in zip(f,xss):
-    pass
+    if cycles%40==20:
+        s+=(x*cycles)
+    if line.startswith( "noop"):
+        cycles+=1
+    elif line.startswith("addx"):
+        cycles+=1
+        if cycles%40==20:
+            s+=(x*cycles)
+        cycles+=1
+        x+=ints[0]
+        
+        
+
 print(s)

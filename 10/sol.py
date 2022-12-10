@@ -1,7 +1,7 @@
 import re
 from typing import Tuple, Callable, Iterable, Optional
 import sys
-fname=sys.argv[1] if len(sys.argv)>1 else "input"
+fname=sys.argv[1] if len(sys.argv)>1 else "input1"
 f=[line.strip() for line in open(fname)]
 
 from collections import defaultdict
@@ -60,7 +60,27 @@ try:
 except Exception:
     pass
 
+x=1
+cycles=0
 s=0
+mp=[["." for i in range(40)]for j in range(7)]
 for (line,ints) in zip(f,xss):
-    pass
+    if True:
+        y=cycles//40
+        xx=cycles%40
+        print(y,xx)
+        mp[y][xx] = "#" if abs(xx-x)<=1 else "."
+    if line.startswith( "noop"):
+        cycles+=1
+    elif line.startswith("addx"):
+        cycles+=1
+        if True:
+            y=cycles//40
+            xx=cycles%40
+            mp[y][xx] = "#" if abs(xx-x)<=1 else "."
+        cycles+=1
+        x+=ints[0]
+        
+print("\n".join("".join(x) for x in mp))
+
 print(s)
