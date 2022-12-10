@@ -13,3 +13,7 @@ not turning strings into integers (wrong answer)
 day 5
 forgetting about stripping space from input lines,
 failing to realise the code had succeeded and it was now testing against part 2
+
+
+day 9
+iterating 8 times rather than 9
