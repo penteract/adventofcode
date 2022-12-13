@@ -1,12 +1,12 @@
 #! /usr/bin/env python3
-#curl https://adventofcode.com/2021/leaderboard/day/[1-15] -O
+#curl -A "<email> via curl" https://adventofcode.com/2021/leaderboard/day/[1-15] -O
 
 import string
 from collections import defaultdict
 
 POINTLESS=[]
 
-DAYS=[i for i in list(range(1,2+1))]
+DAYS=[i for i in list(range(1,12+1))]
 
 def process(html):
     with open(html) as f:
@@ -58,11 +58,12 @@ class User():
             self.byday[day-1][1]=100-i
         self.bestday = max(sum(sd) for sd in self.byday)
     def __str__(self):
-        #return f"{self.name:26}: {self.score:4}={self.score1:4}+{self.score2:4} over {self.num}"
+        return f"{self.name:26}: {self.score:4}={self.score1:4}+{self.score2:4} over {self.num}"
         #k=";".join(",".join(str(x) for x in y) for y in self.byday)
         #return f"{self.name:26}: {self.score:4} {self.score2-self.score1:4} {k}"
-        ss = sorted([(a+b,d) for d,(a,b) in enumerate(self.byday)])
-        return "Y" if 19 in [x[1] for x in ss[5:15]] else "N" # ".join(("" if d!=19 else "##")+str(d)+","+str(n) for n,d in ss)
+        
+        #ss = sorted([(a+b,d) for d,(a,b) in enumerate(self.byday)])
+        #return "Y" if 19 in [x[1] for x in ss[5:15]] else "N" # ".join(("" if d!=19 else "##")+str(d)+","+str(n) for n,d in ss)
         
         #for n in ss:
         #    print(n,end="")

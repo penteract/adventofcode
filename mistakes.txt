@@ -17,3 +17,8 @@ failing to realise the code had succeeded and it was now testing against part 2
 
 day 9
 iterating 8 times rather than 9
+
+day 12
+failing to realise the code had succeeded and it was now testing against part 2 (again)
+I incorrectly resubmitted the part 1 answer to part 2,
+ then thought I'd misread the question and solved part 2 before realising it was part 2

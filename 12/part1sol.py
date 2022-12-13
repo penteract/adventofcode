@@ -29,7 +29,6 @@ def ints_in(x: str) -> list[int]:
     ex = r'(?:(?<!\d)-)?\d+'
     return ints(re.findall(ex, x))
 
-
 class Pt(tuple):
     def __add__(self,other):
         return Pt([x+y for x,y in zip(self,other)])
@@ -47,7 +46,7 @@ dirs = {
     "L":Pt((0,-1)),
     "D":Pt((-1,0))
     }
-ods = list(dirs.values())
+
 
 #odirs = [(0,1),(1,0),(0,-1),(-1,0)]
 ddirs = lmap(Pt,[(0,1),(1,1),(1,0),(1,-1),(0,-1),(-1,-1),(-1,0),(-1,1)])
@@ -61,7 +60,32 @@ try:
 except Exception:
     pass
 
+for y,l in enumerate(f):
+    for x,c in enumerate(l):
+        if c=="S":
+            p = Pt((x,y))
+            c="a"
+        if c=="E":
+            dst=Pt((x,y))
+            c="z"
+        d[Pt((x,y))]=ord(c)
+Pt((x,y))
 s=0
+gen = [p]
+seen=set(gen)
+while True:
+    nx = []
+    for a in gen:
+        for k in  dirs.values():
+            if a+k in d and d[a+k]<=d[a]+1 and a+k not in seen:
+                seen.add(a+k)
+                nx.append(a+k)
+    s+=1
+    if dst in seen:
+        print(s)
+        break
+    gen=nx
+
 for (line,ints) in zip(f,xss):
     pass
-print(s)
+#print(s)
