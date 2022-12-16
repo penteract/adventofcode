@@ -1,10 +1,8 @@
-import re
+import re,math
 from typing import Tuple, Callable, Iterable, Optional
 import sys
 fname=sys.argv[1] if len(sys.argv)>1 else "input"
-f = open(fname)
-ftext=f.read()
-f=[line.strip() for line in ftext.split("\n")]
+f=[line.strip() for line in open(fname)]
 
 from collections import defaultdict
 
@@ -54,16 +52,64 @@ ods = list(dirs.values())
 #odirs = [(0,1),(1,0),(0,-1),(-1,0)]
 ddirs = lmap(Pt,[(0,1),(1,1),(1,0),(1,-1),(0,-1),(-1,-1),(-1,0),(-1,1)])
 
-try:
-    xs = ints(f)
-except Exception:
-    pass
-try:
-    xss = lmap(ints_in,f)
-except Exception:
-    pass
-
+def cmp(a,b):
+    if isinstance(a,int) and isinstance(b,int):
+        return 0 if a==b else -1 if a<b else 1
+    if isinstance(a,int):
+        a=[a]
+    if isinstance(b,int):
+        b=[b]
+    for x,y in zip(a,b):
+        if (k:=cmp(x,y))!=0:
+            return k
+    return cmp(len(a),len(b))
+f=iter(f)
+i=1
 s=0
-for (line,ints) in zip(f,xss):
-    pass
-print(s)
+
+s1=[[2]]
+s2=[[6]]
+aa=[s1,s2]
+for l in f:
+    if l=="":
+        l=next(f)
+    l2=next(f)
+    l=eval(l)
+    r=eval(l2)
+    if cmp(l,r)==-1:
+        s+=i
+    i+=1
+    aa.append(l)
+    aa.append(r)
+
+#key=lambda x,y:cmp(x,y)<0
+def fst(xs):
+    if isinstance(xs,int):
+        return xs
+    if len(xs)<1:
+        return -1
+    else:
+        return fst(xs[0])
+ls = [fst(a) for a in aa]
+print( ls)
+ls.sort()
+#ss=sorted(aa,)
+a=ls.index(2)
+b=ls.index(6)
+
+
+print((a+1)*(b+1))
+
+
+
+
+
+
+
+
+
+
+
+
+
+

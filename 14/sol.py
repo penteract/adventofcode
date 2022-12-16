@@ -2,9 +2,7 @@ import re
 from typing import Tuple, Callable, Iterable, Optional
 import sys
 fname=sys.argv[1] if len(sys.argv)>1 else "input"
-f = open(fname)
-ftext=f.read()
-f=[line.strip() for line in ftext.split("\n")]
+f=[line.strip() for line in open(fname)]
 
 from collections import defaultdict
 
@@ -64,6 +62,50 @@ except Exception:
     pass
 
 s=0
-for (line,ints) in zip(f,xss):
-    pass
-print(s)
+
+print("hi")
+
+for ints in xss:
+    pts = lmap(Pt,zip(ints[0::2],ints[1::2]))
+    #d[pts[0]]=1
+    for l,r in zip(pts,pts[1:]):
+        a=l[0]
+        for x in range(min(l[0],r[0]),max(l[0],r[0])+1):
+            for y in range(min(l[1],r[1]),max(l[1],r[1])+1):
+                d[(x,y)]=1
+
+mx = max(p[1] for p in d)
+print (mx)
+n=0
+while True:
+    x=500
+    y=0
+    #print(x,y)
+    while y<=mx:
+        if d[x,y+1]==0:
+            y+=1
+        elif d[x-1,y+1]==0:
+            y+=1
+            x-=1
+        elif d[x+1,y+1]==0:
+            y+=1
+            x+=1
+        else:
+            break
+    n+=1
+    d[x,y]=2
+    if (x,y)==(500,0):
+        break
+
+print(n)
+
+
+
+
+
+
+
+
+
+
+

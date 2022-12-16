@@ -22,3 +22,12 @@ day 12
 failing to realise the code had succeeded and it was now testing against part 2 (again)
 I incorrectly resubmitted the part 1 answer to part 2,
  then thought I'd misread the question and solved part 2 before realising it was part 2
+
+day 13
+insufficient familiarity with python - sorted does not take a comparator function
+  (functools.cmp_to_key works)
+  'index', not find or search
+
+day 15
+inspecting the input by hand to check whether there were any beacons with y==2000000 (wrong submission)
+convoluted range-intersection code

@@ -63,7 +63,33 @@ try:
 except Exception:
     pass
 
-s=0
+s=set()
+yy=2000000
+if len(f)<20:
+    yy=10
+
+r = []
 for (line,ints) in zip(f,xss):
-    pass
-print(s)
+    print(line,ints,yy)
+    if line:
+        sx,sy,bx,by = ints
+        dd = abs(sx-bx)+abs(sy-by)
+        diff = dd - abs(sy-yy) 
+        if diff<0:
+            continue
+        for i in range(-diff,diff+1):
+            d[sx+i]=True
+        if by==yy:
+            s.add(bx)
+
+print(len(d)-len(s))
+
+
+
+
+
+
+
+
+
+
