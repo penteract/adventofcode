@@ -63,7 +63,50 @@ try:
 except Exception:
     pass
 
-s=0
+s=set()
+yy=2000000
+#yy=111810
+if len(f)<20:
+    yy=10
+
+r = []
+
+
+sqs = []
+es1 = []
+es2 = []
 for (line,ints) in zip(f,xss):
-    pass
-print(s)
+    #print(line,ints,yy)
+    if line:
+        sx,sy,bx,by = ints
+        dd = abs(sx-bx)+abs(sy-by)
+        sqs.append(((sx,sy),dd))
+        es1.append((sy-(sx+dd))*2-1)
+        es1.append((sy-(sx-dd))*2+1)
+        es2.append((sy+(sx+dd))*2+1)
+        es2.append((sy+(sx-dd))*2-1)
+
+es1.sort()
+es2.sort()
+e2 = [y+k for y,z in zip(es2,es2[1:]) for k in [1,3] if y+k<z and y+7>z]
+e1 = [y+k for y,z in zip(es1,es1[1:]) for k in [1,3] if y+k<z and y+7>z]
+for y1 in e1:
+    for y2 in e2:
+        py = (y1+y2)//4
+        px = (y2-y1)//4
+        if 0<py<2*yy and 0<px<2*yy:
+            for cen,d in sqs:
+                if abs(cen[0]-px)+abs(cen[1]-py) <=d:
+                    break
+            else:
+                print(px*4000000+py)
+            
+
+#|#|#|#|#|#|#|#
+#|#|#|/|#|#|#|#
+#|#|/| | |#|#|#
+#|/| | | | |#|#
+#|#| | | |#|#|#
+#|#|#| |#|#|#|#
+            
+
