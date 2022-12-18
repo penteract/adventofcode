@@ -6,10 +6,10 @@ from collections import defaultdict
 
 POINTLESS=[]
 
-DAYS=[i for i in list(range(1,12+1))]
+DAYS=[i for i in list(range(1,17+1))]
 
 def process(html):
-    with open(html) as f:
+    with open("../2022/leaderboards/"+html) as f:
         raw = f.read()
     rows = raw.split('<span class="leaderboard-position">')
     al = rows[1:101],rows[101:201]
@@ -51,7 +51,7 @@ class User():
         self.score = sum(self.scores)
         self.score1 = sum(score (r) for r in self.fsts)
         self.score2 = sum(score (r) for r in self.snds)
-        self.byday = [[0,0] for i in DAYS]
+        self.byday = [[0,0] for i in range(max(DAYS)+1)]
         for i,day,part,t in self.fsts:
             self.byday[day-1][0]=100-i
         for i,day,part,t in self.snds:

@@ -31,3 +31,10 @@ insufficient familiarity with python - sorted does not take a comparator functio
 day 15
 inspecting the input by hand to check whether there were any beacons with y==2000000 (wrong submission)
 convoluted range-intersection code
+
+day 16
+didn't optimise soon enough (part 2)
+should probably have used bitsets?
+
+day 17
+spending too long checking things in part 2 rather than just going for it
