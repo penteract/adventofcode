@@ -67,15 +67,17 @@ class Skip():
         nx = self.links[0][1]
         self.remove()
         newsucc = nx[n]
+        f,lf=newsucc,0
         for j in range(len(self.links)):
-            lf,f = newsucc.getf(j)
+            dlf,f = f.getf(j)
+            lf+=dlf
             self.links[j]=(lf+1,f)
             lb,b = f.backlinks[j]
             f.backlinks[j] = (lf+1,self)
             self.backlinks[j]=(lb-lf,b)
             b.links[j] = (lb-lf,self)
         for j in range(len(self.links),maxlinks):
-            _,f = newsucc.getf(j)
+            _,f = f.getf(j)
             k,b = f.backlinks[j]
             f.backlinks[j] = (k+1,b)
             b.links[j] = (k+1,f)
@@ -86,8 +88,9 @@ class Skip():
             f.backlinks[n] = (lf+lb-1,b)
             b.links[n] = (lf+lb-1,f)
         i = len(self.links)
+        f=self
         for j in range(i,maxlinks):
-            _,f = self.getf(j)
+            _,f = f.getf(j)
             k,b = f.backlinks[j]
             f.backlinks[j] = (k-1,b)
             b.links[j] = (k-1,f)
