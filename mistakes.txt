@@ -38,3 +38,12 @@ should probably have used bitsets?
 
 day 17
 spending too long checking things in part 2 rather than just going for it
+
+day 19
+misreading the question (got stuck until joe helped me)
+
+day 20
+Not thinking carefully enough about precise behaviour
+
+day 21
+insufficient familiarity with sympy/spending too long trying to remember it

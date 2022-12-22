@@ -67,11 +67,26 @@ try:
     xss = lmap(ints_in,f)
 except Exception:
     pass
+d={}
 
 s=0
 for (line,ints) in zip(f,xss):
-    pass
-print(s)
+    s,e = line.split(":")
+    d[s] = ints[0] if ints else e.strip()
+
+def ev(m):
+    k = d[m]
+    if isinstance(k,int):
+        return k
+    else:
+        for mm in k.split(" "):
+            if len(mm)==4:
+                ev(mm)
+        #print(e,m)
+        d[m] = eval(k,d)
+        return int(d[m])
+
+print(ev("root"))
 
 
 

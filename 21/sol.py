@@ -67,12 +67,32 @@ try:
     xss = lmap(ints_in,f)
 except Exception:
     pass
+d={}
 
 s=0
+from  sympy import *
 for (line,ints) in zip(f,xss):
-    pass
-print(s)
+    s,e = line.split(":")
+    d[s] = ints[0] if ints else e.strip()
+    if s=="humn":
+        d[s]=var("X")
 
+
+def ev(m):
+    k = d[m]
+    if not isinstance(k,str):
+        return k
+    else:
+        for mm in k.split(" "):
+            if len(mm)==4:
+                ev(mm)
+        #print(e,m)
+        d[m] = eval(k,d)
+        return d[m]
+
+l =[ev(mm) for mm in d["root"].split(" ") if len(mm)==4]
+
+print(solve(Eq(l[0],l[1])))
 
 
 
