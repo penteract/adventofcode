@@ -47,3 +47,11 @@ Not thinking carefully enough about precise behaviour
 
 day 21
 insufficient familiarity with sympy/spending too long trying to remember it
+
+day 22
+Getting some directions wrong when wrapping the cube (wrong submission)
+Not resetting direction if colling into a wall after crossing an edge of the cube (wrong submission)
+
+day 23
+misreading/not reading whole question (a) directions change (b) some elves don't move
+Directions were (y,x) (from code written 3 weeks ago), but I forgot and used (x,y)
