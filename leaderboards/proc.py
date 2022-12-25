@@ -6,10 +6,10 @@ from collections import defaultdict
 
 POINTLESS=[]
 
-DAYS=[i for i in list(range(1,17+1))]
+DAYS=[i for i in list(range(1,24+1))]
 
 def process(html):
-    with open("../2022/leaderboards/"+html) as f:
+    with open("../leaderboards/"+html) as f:
         raw = f.read()
     rows = raw.split('<span class="leaderboard-position">')
     al = rows[1:101],rows[101:201]
@@ -102,7 +102,10 @@ print("My rank:",rank(lambda x: x.score))
 #printby(lambda x:sum(score(p) for p in x.snds if not (isintcode(p[1])) ),n=100)
 #print("Not intcode")
 #printby(lambda u:sum(sum(x) for i,x in enumerate(u.byday) if not isintcode(i+1)),n=100)
-print("part 2 - part 1:",rank(lambda x:x.score2-x.score1))
+for i in range(12,17):
+    print(i)
+    printby((lambda x: x.score2-x.score1*i/10), n=6)
+    #print(i,"part 2 - part 1:",rank(lambda x:x.score2-x.score1*i/100))
 
 
 #part 2 of non intcode days, subtract everything else
@@ -114,7 +117,8 @@ print("part 2 - part 1:",rank(lambda x:x.score2-x.score1))
 
 #printby((lambda x: x.score), n=150)
 me = muchdata["penteract"]
-printby((lambda x: x.score), n=100)
+printby((lambda x: x.score2-x.score1*1.5), n=4)
+printby((lambda x: x.score2-x.score1), n=20)
 print(me.score2-me.score1)
 print(me.score)
 

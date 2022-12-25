@@ -71,12 +71,30 @@ except Exception:
 #grid = [[(Pt(x,y),c) for x,c in enumerate(line)] for y,line in enumerate(f)]
 
 s=0
+hh="=-012"
 for (line,ints) in zip(f,xss):
-    pass
+    l = len(line)
+    os=s
+    for k,c in enumerate(reversed(line)):
+        s+=(hh.index(c)-2)*(5**k)
+    print(line,s-os)
+
+
+
 print(s)
+i=0
+while (5**i)*2.5<abs(s):
+    i+=1
 
-
-
+res = ""
+while i>=0:
+    s+= 2.5*(5**i)
+    print(s,2*(5**i),s//(5**i))
+    res+= hh[int(s//(5**i))]
+    s%=5**i
+    s=int(s-0.5*(5**i))
+    i-=1
+print(res)
 
 
 

@@ -55,3 +55,9 @@ Not resetting direction if colling into a wall after crossing an edge of the cub
 day 23
 misreading/not reading whole question (a) directions change (b) some elves don't move
 Directions were (y,x) (from code written 3 weeks ago), but I forgot and used (x,y)
+
+day 24
+forgot to avoid repeatedly searching duplicates in A*
+
+day 25
+Failure to correctly encode answer (wrong submission)
