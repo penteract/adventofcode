@@ -70,7 +70,7 @@ def withinit(init,n,sz=9):
 def countFrom(k):
     """How many numbers greaer than or equal to k with the same number of digits as k are allowed?"""
     # example 133501:
-    # withdup(10-2,6) (2xxxx,3xxxx..9xxxx)
+    # withdup(10-2,6) (2xxxxx,3xxxxx..9xxxxx)
     # +withdup(10-4,5) (14xxxx,15xxxx,..,19xxxx)
     # +withdup(10-4,4) (134xxx,135xxx,..139xxx)
     # +ci(10-5,3) (1335xx,1336xx,..1339xx)

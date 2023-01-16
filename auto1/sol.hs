@@ -6,6 +6,7 @@ import Data.List
 import Data.Foldable(toList)
 import Data.Char
 import Control.Arrow
+import GHC.IO (unsafePerformIO)
 
 data T a b =  L a | B Int b (T a b) (T a b) deriving (Eq)
 
@@ -179,11 +180,16 @@ readInp test s = let
         else if length l==1 && all (`elem` ['0'..'9']) (head l) then [[ord c - ord '0'] | c <- concat (lines s)]
             else map getints (lines s)
 
+mxm [] = -2^31
+mxm xs = maximum xs
+mnm [] = 2^31
+mnm xs = minimum xs
+
 folds :: [[Int]->Int]
-folds = [sum, maximum ,minimum, (\ xs -> minimum xs * maximum xs), product]
+folds = [sum, mxm ,mnm, (\ xs -> mnm xs * mxm xs), product] -- TODO: maximum/minimum of empty list is error
 
 nfolds :: [(String, [Int] -> Int)]
-nfolds = [("max",maximum),("min",minimum),("min*max",(\ xs -> minimum xs * maximum xs))]
+nfolds = [("max",mxm),("min",mnm),("min*max",(\ xs -> mnm xs * mxm xs))]
 
 trees :: Int -> [T L O]
 trees j = el [ (eTrees i (Null,False) (map Var [0..(j-1)]) (map Num consts)) | i <- [(j-1)..3]]
@@ -214,7 +220,7 @@ solvePairs = el $ [
       [ map (\ t -> ("<"++opname++">"++foldname++":"++show t, fn . map (eval' op t . (\ (a,b)->[a,b])) ))  (trees' 2) | 
         (opname,op) <- namedOps
       ]
-    ) | (foldname,fn) <- [("max",maximum),("min",minimum), ("min*max",(\ xs -> minimum xs * maximum xs))]
+    ) | (foldname,fn) <- [("max",mxm),("min",mnm), ("min*max",(\ xs -> mnm xs * mxm xs))]
     ]
   ]
 
@@ -233,7 +239,7 @@ solveSimple' = el $ [
       [ map (\ t -> ("<"++opname++">"++foldname++":"++show t, fn . map (eval' op t . (:[])) ))  (trees' 1) | 
         (opname,op) <- namedOps
       ]
-    ) | (foldname,fn) <- [("max",maximum),("min",minimum), ("min*max",(\ xs -> minimum xs * maximum xs))]
+    ) | (foldname,fn) <- [("max",mxm),("min",mnm), ("min*max",(\ xs -> mnm xs * mxm xs))]
     ]
   ]
 solveSimple :: [(String,[Int] -> Int)]
@@ -248,7 +254,7 @@ solveSimple = el $ [
       [ map (\ t -> ("<"++opname++">"++foldname++":"++show t, fn . map (eval' op t . (:[])) ))  (trees' 1) | 
         (opname,op) <- namedOps
       ]
-    ) | (foldname,fn) <- [("max",maximum),("min",minimum), ("min*max",(\ xs -> minimum xs * maximum xs))]
+    ) | (foldname,fn) <- [("max",mxm),("min",mnm), ("min*max",(\ xs -> mnm xs * mxm xs))]
     ]
   ] 
   -- ++ [map (\ t -> (foldname++":"++show t, fn . map (eval t . (:[])) ))  (trees 1)
@@ -266,8 +272,8 @@ handleInp tests reals testout =
         maxtries = testout*(lg testout) -- If there weren't any duplicate functions, this might be more like testout/10 (to give at least 90% chance that if we're wrong we don't submit anything)
          in
             if length testn == 1 || all ((==1).length) testn then head [(s,f (concat realn)) | (s,f)<-take maxtries solveSimple, f ctn==testout]
-            else if ((==2).length) testn then head [ (s,f realn) | (s,f) <- take (maxtries*2) (rr [solvePairsUnsafe, solveGeneric]), f testn == testout ]
-            else head [ (s,f realn) | (s,f) <- take maxtries solveGeneric, f testn == testout ]
+            else if all ((==2).length) testn then head [ (s,f realn) | (s,f) <- take (maxtries*2) (rr [solvePairsUnsafe, solveGeneric]), f testn == testout ]
+            else head [ (s,f realn) | (s,f) <- take maxtries solveGeneric, (seq (unsafePerformIO (print testn)) (f testn == testout)) ]
 
 
 main :: IO ()
@@ -277,6 +283,7 @@ main = do
     --let inp = (map read (lines c) :: [Int])
     --print inp
     sampleIn <- readFile "input1"
+    print( readInp sampleIn c)
     -- let sampleInp = map read (lines sampleIn) :: [Int]
     --print "hi"
     sampleOut <- (read <$> readFile "output1-1") :: IO Int

@@ -23,12 +23,3 @@ try:
     xss = [list(map(int(xs.split(",")))) for xs in f]
 except Exception:
     pass
-
-ys=[[]]
-for line in f:
-    if line.strip():
-        ys[-1].append(int(line))
-    else:
-        ys.append([])
-
-open(sys.argv[2],mode="w").write("\n".join(",".join(map(str,xs)) for xs in ys))
