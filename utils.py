@@ -74,9 +74,10 @@ return a dictionary of shortest paths from the initial vertex.
         if done and done(x):
             return results
         if x not in seen:
+            seen.add(x)
             for d,y in pths(x):
                 if y not in seen:
-                    heappush((k+d,y))
+                    heappush(pq,(k+d,y))
     return results
             
     
