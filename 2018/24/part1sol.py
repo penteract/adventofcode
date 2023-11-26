@@ -59,47 +59,21 @@ def targets(a,b):
         if (not b): break
     return res
 
-def battle(imm,inf):
-    while imm and inf:
-    #for n in range(10):
-        print([x[1] for x in imm] , [x[1] for x in inf],sep="\n")
-        t1 = targets(imm,inf)
-        t2 = targets(inf,imm)
-        l = t1+t2
-        l.sort(key=lambda x: - x[0][4])
-        ktot=0
-        for at,df in l:
-            #print(at[4])
-            k = min(df[1], damcalc(at,df)//df[2])
-            print(k)
-            if at[1]:
-                df[1] -= k
-                ktot+=k
-        if ktot==0: break
-        imm = [x for x in imm if x[1]]
-        inf = [x for x in inf if x[1]]
-    return sum([x[1] for x in imm]) if len(inf)==0 else 0
-def test(boost):
-    im = list(map(list, imm))
-    for k in im:
-        k[3]+=boost
-    inff=list(map(list, inf))
-    return battle(im,inff)
-mn = 1
-while True:
-    mx = 2*mn
-    if test(mx):
-        break
-    mn=mx
-
-while mx>mn+1:
-    mid = (mx + mn)//2
-    if test(mid):
-        mx=mid
-    else:
-        mn=mid
-
+while imm and inf:
+#for n in range(10):
+    print([x[1] for x in imm] , [x[1] for x in inf],sep="\n")
+    t1 = targets(imm,inf)
+    t2 = targets(inf,imm)
+    l = t1+t2
+    l.sort(key=lambda x: - x[0][4])
+    for at,df in l:
+        #print(at[4])
+        k = min(df[1], damcalc(at,df)//df[2])
+        print(k)
+        if at[1]: df[1] -= k
+    imm = [x for x in imm if x[1]]
+    inf = [x for x in inf if x[1]]
 print([x[1] for x in imm] , [x[1] for x in inf],sep="\n")
+
 #print("wrong")
 print(sum([x[1] for x in imm + inf]))
-print(test(mx))
