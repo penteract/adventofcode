@@ -47,7 +47,7 @@ rr xss = uncurry ((.rr) . (++) ) $ unzip (xss >>= (toList . uncons))
 -}
 
 -- take from a potentially infinite list of potentially infinite lists 
---  along diagonals - like the classical proof that there are as many rationals as integers
+--  along diagonals - like the classic proof that there are as many rationals as integers
 dl :: [[a]] -> [a]
 dl xss = dl' [] xss
     where
@@ -67,7 +67,7 @@ el [] = []
 el (xs:xss) = rr [xs,el xss]
 
 -- take from a potentially infinite list of potentially infinite lists
--- take in a bablanced manner that favors the elements of the first lists and the fronts of the later lists
+-- take in a balanced manner that favors the elements of the first lists and the fronts of the later lists
 --   (along a something like a hyperbola)
 hl :: [[a]] -> [a]
 hl = concat . hl' 2

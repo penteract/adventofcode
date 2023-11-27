@@ -58,7 +58,7 @@ while True:
         break
 res=0
 for pos in board:
-    if y1<=pos[1]<=y2 and board[pos] in "~":
+    if y1<=pos[1]<=y2 and board[pos] in "->|<~":
         res+=1
 #print(f,board)
 prPart(board)
