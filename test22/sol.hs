@@ -273,8 +273,8 @@ handleInp tests reals testout =
     let rd = readInp tests
         testn1 = rd tests
         realn1 = rd reals
-        (testn,realn) = if any ((==0).length) testn1 && all ((<=1).length) testn1 then (splitOnEmpty testn1, splitOnEmpty realn1) else (testn1,realn1)
         ctn = concat testn
+        (testn,realn) = if any ((==0).length) testn1 && all ((<=1).length) testn1 then (splitOnEmpty testn1, splitOnEmpty realn1) else (testn1,realn1)
         maxtries = testout*(lg testout) -- If there weren't any duplicate functions, this might be more like testout/10 (to give at least 90% chance that if we're wrong we don't submit anything)
          in
             if length testn == 1 || all ((==1).length) testn then head [(s,f (concat realn)) | (s,f)<-take maxtries solveSimple, f ctn==testout]

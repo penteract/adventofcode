@@ -62,8 +62,8 @@ import urllib.request as r
 print(sys.argv[0])
 sesh = os.environ["AOCSession"]
 
-headers={"Cookie":"session="+sesh, "User-Agent":"autotesths.py (using auto1/sol.hs) (https://github.com/penteract/adventofcode)"}
-#headers={"User-Agent":"autotesths.py (using auto1/sol.hs) (https://github.com/penteract/adventofcode)"}
+#headers={"Cookie":"session="+sesh, "User-Agent":"autotesths.py (using auto1/sol.hs) (https://github.com/penteract/adventofcode)"}
+headers={"User-Agent":"autotesths.py (using auto1/sol.hs) (https://github.com/penteract/adventofcode)"}
 
 def writeTo(file,content):
     with open(file,mode="w") as f:
@@ -256,7 +256,7 @@ def find_examples(part):
             raise Exception("Can't find part 2 sample output")
         #check if it's in a list
         #if (result:=find_list(s,start,last,part)):
-        #    return result #(don't check because it didn't work 2022 day 1)
+        #    return result (don't check because it didn't work 2022 day 1
         sampleout = sanitize(s[start:last])
         writeTo(outputfile,sampleout)
     else:
