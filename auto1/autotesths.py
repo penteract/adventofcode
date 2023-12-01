@@ -2,25 +2,19 @@
 usage = """
 Python script for advent of code which downloads the problem description,
 attempts to extract sample input and corresponding output,
-then runs sol.py on the sample input whenever sol.py is modified until
-sol.py gives the sample output. When it does, sol.py gets run on the real input
+then builds and runs sol.hs on the sample input whenever sol.hs is modified until
+sol.hs gives the sample output. When it does, sol.hs gets run on the real input
 and if that succeeds, the last printed word gets submitted automatically.
 
 call as `autotest.py {year} {day}` with the
 environment variable $AOCSession set to the value of your session cookie
 
-    suggested code for sol.py:
-```
-import sys
-fname=sys.argv[1] if len(sys.argv)>1 else "input"
-f=list(open(fname))
-```
 
 files used:
-sol.py       This program assumes that your solution for the part you are
+sol.hs       This program assumes that your solution for the part you are
              currently working on is in this file.
-             Run as `python3 sol.py {input}` where {input} is the name of
-             a file from which sol.py is expected to read the input
+             Run as `ghc sol.hs; ./sol {input}` where {input} is the name of
+             a file from which sol.hs is expected to read the input
              for the day's problem
             
 input        Your personal input (https://adventofcode.com/{year}/day/{day}/input)
@@ -309,6 +303,7 @@ def doPart(part=None):
     
     print("number of examples:",len(examples))
     ns=0
+    firstIteration=True
     while True:
         while ns == (ns := os.stat("sol.hs").st_mtime_ns):
             if os.system("inotifywait -q sol.hs"):
@@ -318,8 +313,11 @@ def doPart(part=None):
         error=None
         for inp,sampleout in examples:
             print("==== trying sample input (10 second timeout)")
-            p=tee_with_exitcode(f"ghc sol.hs && timeout 20 ./sol {inp} 2>&1", "tmp")
-            #p=tee_with_exitcode(f"timeout 20 ./sol {inp} 2>&1", "tmp")
+            if firstIteration:
+                p=tee_with_exitcode(f"timeout 20 ./sol {inp} 2>&1", "tmp")
+                firstIteration=False
+            else:
+                p=tee_with_exitcode(f"ghc sol.hs && timeout 20 ./sol {inp} 2>&1", "tmp")
             #subprocess.run("(exit `((timeout 10 python3 sol.py input1 2>&1 ; echo $? >&3) | tee tmp >&4) 3>&1) 4>&1", shell=True)
             answers = readString("tmp").split()
             if not (p.returncode==0 and len(answers)>=1 and answers[-1]==sampleout):

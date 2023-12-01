@@ -100,24 +100,25 @@ eTrees :: Int -> (O,Bool) -> [L] -> [L] -> [T L O]
 eTrees 0 opl [] vs = [L v | v <- vs, isUseful opl v]
 eTrees 0 _ (v:[]) _ = [L v]
 eTrees 0 _ (v:_) _ = []
-eTrees n (op,wasLeft) [] vs =  rr [
+eTrees n (op,wasLeft) [] vs =
     rr [
-        [ B i fn l r  |
-            (l,r) <- diagCross (eTrees i (fn,True) [] vs) (eTrees (n-1-i) (fn,False) [] vs)
-        ]
-    | i <-  [0..n-1]]
+      rr [
+          [ B i fn l r  |
+              (l,r) <- diagCross (eTrees i (fn,True) [] vs) (eTrees (n-1-i) (fn,False) [] vs)
+          ]
+      | i <-  [0..n-1]]
     | (m,(fn,assoc,comm)) <-numberedOps , ((fn/=op) || wasLeft || (not assoc)) ]
-eTrees n (op,wasLeft) xs vs =  let
+eTrees n (op,wasLeft) xs vs = let
     l = length xs
     s = subsequences xs
     ss = zip s (reverse s) in
       if n+1<l then (error "argh") else
         rr [
-        rr [
+          rr [
             [ B i fn l r  |
                 (l,r) <- diagCross (eTrees (n-1-i) (fn,True) ys vs) (eTrees i (fn,False) xs vs)
             ]
-        | i <-  [0..n-1], (xs,ys) <- ss, length xs<=(i+1) && length ys <= (n-i)]
+          | i <-  [0..n-1], (xs,ys) <- ss, length xs<=(i+1) && length ys <= (n-i)]
         | (m,(fn,assoc,comm)) <-numberedOps , ((fn/=op) || wasLeft || (not assoc)) ]
 --eTrees _ _ _ _ = undefined
 
@@ -277,22 +278,23 @@ handleInp tests reals testout =
         ctn = concat testn
         maxtries = testout*(lg testout) -- If there weren't any duplicate functions, this might be more like testout/10 (to give at least 90% chance that if we're wrong we don't submit anything)
          in
-            if length testn == 1 || all ((==1).length) testn then head [(s,f (concat realn)) | (s,f)<-take maxtries solveSimple, f ctn==testout]
+            if length testn == 1 || all ((==1).length) testn then head [(s,f (concat realn)) | (s,f)<-take maxtries solveSimple, (f ctn == testout)]
             else if all ((==2).length) testn  then head [ (s,f realn) | (s,f) <- take (maxtries*2) (rr [solvePairsUnsafe, solveGeneric]), f testn == testout ]
-            else head [ (s,f realn) | (s,f) <- take maxtries solveGeneric, (seq (unsafePerformIO (print testn)) (f testn == testout)) ]
+            else head [ (s,f realn) | (s,f) <- take maxtries solveGeneric, (f testn == testout) ]
 
 
 main :: IO ()
 main = do
-    [fname] <- System.Environment.getArgs
+    args <- System.Environment.getArgs
+    let [fname, sampleIn, sampleOut] = if length args==1 then args++ ["input1","output1-1"] else args
     c <- readFile fname
     --let inp = (map read (lines c) :: [Int])
     --print inp
-    sampleIn <- readFile "input1"
+    sampleIn <- readFile sampleIn
     print( readInp sampleIn c)
     -- let sampleInp = map read (lines sampleIn) :: [Int]
     --print "hi"
-    sampleOut <- (read <$> readFile "output1-1") :: IO Int
+    sampleOut <- (read <$> readFile sampleOut) :: IO Int
     --mapM_ print (take 100 $ eTrees 2 (Null,False) [Var 0] (map Num [1..]))
     --  (take (sampleOut `div` 3) (el [ (eTrees i (Null,False) [Var 0] (map Num consts)) | i <- [1..]]))
     --let a = head$ filter (\ (_,(_,f)) -> f sampleInp == sampleOut) $ take (sampleOut)
