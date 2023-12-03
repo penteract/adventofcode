@@ -4,38 +4,18 @@ import sys
 fname=sys.argv[1] if len(sys.argv)>1 else "input"
 f = open(fname)
 ftext=f.read()
-flns=[line.strip() for line in ftext.split("\n")[:-1]]
-f=flns
-
-fgroups = ftext.split("\n\n")
-if len(fgroups)>1:
-    f=[g.split("\n") for g in fgroups]
 
 from collections import defaultdict
 
-d=defaultdict(int)
-
 #copied from https://github.com/joefarebrother/adventofcode/blob/master/misc_utils.py
 def lmap(f: Callable, *xs) -> list:
-    """Like map but returns a list"""
     return list(map(f, *xs))
-
-def ints(xs: Iterable) -> list[int]:
-    """Casts each element of xs to an int"""
-    return lmap(int, xs)
-
 def mint(x, default=None):
-    """Maybe int - casts to int and returns default on failure"""
-    try:
-        return int(x)
-    except ValueError:
-        return default
-
-def ints_in(x: str) -> list[int]:
-    """Finds and parses all integers in the string x"""
+    try: return int(x)
+    except ValueError: return default
+def ints(x: str) -> list[int]:
     ex = r'(?:(?<!\d)-)?\d+'
-    return ints(re.findall(ex, x))
-
+    return lmap(int,re.findall(ex, x))
 
 class Pt(tuple):
     def __add__(self,other):
@@ -65,13 +45,24 @@ ods = list(dirs.values())
 #odirs = [(0,1),(1,0),(0,-1),(-1,0)]
 ddirs = lmap(Pt,[(0,1),(1,1),(1,0),(1,-1),(0,-1),(-1,-1),(-1,0),(-1,1)])
 
+##Input handling
+flns=[line.strip() for line in ftext.split("\n")[:-1]]
+f=flns
+
+fgroups = ftext.split("\n\n")
+if len(fgroups)>1:
+    f=[g.split("\n") for g in fgroups]
 
 try:
-    xs = ints(f)
+    xs = lmap(int,f)
 except Exception:
     pass
 try:
-    xss = lmap(ints_in,f)
+    xss = lmap(ints,f)
 except Exception:
     pass
+
+d=defaultdict(int)
+
 tot=0
+print(f,xss)
