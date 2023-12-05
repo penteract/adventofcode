@@ -3,3 +3,6 @@ not changing int(a+b) (should be 10*a+b) when a and b changed from strings to in
 
 Day 4
 Off by one errors (that I'd anticipated, but didn't hold in mind for long enough)
+
+Day 5
+bug in interval intersection arithmetic (wrong submission), mistake was not quickly deciding to reread bug-prone code
