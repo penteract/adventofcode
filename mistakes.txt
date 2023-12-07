@@ -6,3 +6,6 @@ Off by one errors (that I'd anticipated, but didn't hold in mind for long enough
 
 Day 5
 bug in interval intersection arithmetic (wrong submission), mistake was not quickly deciding to reread bug-prone code
+
+Day 6
+(part 2) Assuming the input was big enough that a naive solution wouldn't work; needing to look up the quadratic formula
