@@ -19,7 +19,7 @@ def ints(x: str) -> list[int]:
 
 def ints_locs(x: str) -> list[int]:
     ex = r'(?:(?<!\d)-)?\d+'
-    return lmap(int,re.findall(ex, x))
+    return [(int(x.group()),x.span()) for x in re.finditer(ex, x)]
 
 class Pt(tuple):
     def __add__(self,other):
@@ -66,4 +66,4 @@ except Exception: pass
 d=defaultdict(int)
 tot=0
 
-print(tot)
+print(lmap(ints_locs,f))
