@@ -9,3 +9,6 @@ bug in interval intersection arithmetic (wrong submission), mistake was not quic
 
 Day 6
 (part 2) Assuming the input was big enough that a naive solution wouldn't work; needing to look up the quadratic formula
+
+Day 7
+Not reading the problem carefully enough (wrong submission) ; off-by-one index error (wrong submission)

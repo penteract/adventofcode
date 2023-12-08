@@ -17,10 +17,6 @@ def ints(x: str) -> list[int]:
     ex = r'(?:(?<!\d)-)?\d+'
     return lmap(int,re.findall(ex, x))
 
-def ints_locs(x: str) -> list[int]:
-    ex = r'(?:(?<!\d)-)?\d+'
-    return lmap(int,re.findall(ex, x))
-
 class Pt(tuple):
     def __add__(self,other):
         return Pt([x+y for x,y in zip(self,other,strict=True)])
@@ -63,7 +59,34 @@ try: xss = lmap(ints,f)
 except Exception: pass
 
 
-d=defaultdict(int)
+def fn(c):
+    if c=="J":
+        return -1
+    if c in "TJQKA":
+        return 10+"TJQKA".find(c)
+    else:
+        return int(c)
+r=[]
+for line in f:
+    cc,n=line.split()
+    l = [fn(x) for x in list(cc)]
+    d = [(l.count(c),c) for c in set(l)]
+    k = sorted(d,reverse=True)
+    if len(k)>1 and (-1) in set(l):
+        m = [c[1] for c in k if c[1]!=-1][0]
+        ll=[x if x!=-1 else m for x in l]
+        d = [(ll.count(c),c) for c in set(ll)]
+        k = sorted(d,reverse=True)
+        print(k)
+    #r.append( (list(zip(*k)),int(n)) )
+    r.append( (([x[0]for x in k],l,line),int(n)) )
+
+print(f)
+for k in r: print(k)
 tot=0
+for i,k in enumerate(sorted(r)):
+    print(i,k,(i+1)*k[1])
+    tot+=(i+1)*k[1]
+#d=defaultdict(int)
 
 print(tot)
