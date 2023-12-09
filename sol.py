@@ -17,7 +17,7 @@ def ints(x: str) -> list[int]:
     ex = r'(?:(?<!\d)-)?\d+'
     return lmap(int,re.findall(ex, x))
 
-def ints_locs(x: str) -> list[int]:
+def ints_locs(x: str) -> list[tuple[int,tuple[int,int]]]:
     ex = r'(?:(?<!\d)-)?\d+'
     return [(int(x.group()),x.span()) for x in re.finditer(ex, x)]
 
@@ -55,7 +55,8 @@ f=flns
 
 fgroups = ftext.split("\n\n")
 if len(fgroups)>1:
-    f=[g.split("\n") for g in fgroups]
+    fgs = [g.split("\n") for g in fgroups]
+    fgns = [lmap(ints,g) for g in fgs]
 
 try: xs = lmap(int,f)
 except Exception: pass
