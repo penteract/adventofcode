@@ -12,3 +12,6 @@ Day 6
 
 Day 7
 Not reading the problem carefully enough (wrong submission) ; off-by-one index error (wrong submission)
+
+Day 8
+messing around with input handling functions ; (part 2) off by 1 errors (wrong submission)
