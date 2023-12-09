@@ -15,3 +15,6 @@ Not reading the problem carefully enough (wrong submission) ; off-by-one index e
 
 Day 8
 messing around with input handling functions ; (part 2) off by 1 errors (wrong submission)
+
+Day 9
+Not moving the wrong answers file from yesterday; Looking for/at the sucess message in the autotest log
