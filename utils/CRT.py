@@ -1,4 +1,4 @@
-def setCRT(a,b,s1,s2):
+def minCRT(a,b,s1,s2):
     """find the minimum n s.t. n%a in s1 and n%b in s2, assuming a and b are coprime"""
     if len(s1)==0 or len(s2)==0: return None
     if (len(s1)>(a-2) or len(s2)>a-2) or len(s1)*len(s2)>(a*b)/2:#just brute force (TODO: prove that the last check is sufficient to make things fast)
@@ -39,8 +39,9 @@ def setCRT(a,b,s1,s2):
         mn = min(mn,((col0[hi]+rowOffset)%b)*a + col)
     assert mn!=a*b
     return mn
+assert minCRT(9,7,[0,4,6],[6,2,5])==6
 
-def naiveSetCRT(a,b,s1,s2):
+def naiveMinCRT(a,b,s1,s2):
     """find the minimum n s.t. n%a in s1 and n%b in s2, assuming a and b are coprime"""
     s1=set(s1)
     s2=set(s2)
@@ -60,16 +61,16 @@ def test(mx=100000, n=100,seed=100):
             a=random.randint(1,mx)#TODO: consider a different distribution. expovariate?
             b=random.randint(1,mx)
         s1,s2 = [random.sample(range(x),random.choice([random.randint(0,x),random.randint(0,x**0.5//1),random.randint(0,x**0.25//1)])) for x in [a,b]]
-        scrt=setCRT
+        scrt=minCRT
         x=None
         try:
             t = timeit.timeit("global z; z=scrt(a,b,s1,s2)",globals=locals(),number=1)
             print(f"time: {t:.6f}, {len(s1):6} of {a:6},{len(s2):6} of {b:6})" )
             x = locals()["z"] # don't do this; z=locals()["z"] doesn't work
-            #x = setCRT(a,b,s1,s2)
-            y = naiveSetCRT(a,b,s1,s2)
+            #x = minCRT(a,b,s1,s2)
+            y = naiveMinCRT(a,b,s1,s2)
             if x!=y:
-                raise Exception("Test failed, naive gave ",y,"; setCRT gave ",x)
+                raise Exception("Test failed, naive gave ",y,"; minCRT gave ",x)
         except Exception as e:
             print("s1:",s1)
             print("s2:",s2)
