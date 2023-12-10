@@ -1,7 +1,7 @@
 def minCRT(a,b,s1,s2):
     """find the minimum n s.t. n%a in s1 and n%b in s2, assuming a and b are coprime"""
     if len(s1)==0 or len(s2)==0: return None
-    if (len(s1)>(a-2) or len(s2)>a-2) or len(s1)*len(s2)>(a*b)/2:#just brute force (TODO: prove that the last check is sufficient to make things fast)
+    if (len(s1)>(a-2) or len(s2)>a-2) or len(s1)*len(s2)>(a*b)/2:#just brute force (TODO: prove that if the last condition holds, n<2*(a+b) or something similar (I think I could even increase the factor to 1/4; 1/2 came from drawing the parallelogram the wrong way round)
         s1=set(s1)
         s2=set(s2)
         for n in range(a*b):

@@ -15,7 +15,7 @@ for n in byname:
     if all(c in k for c in "12"): bypuzz[l][n] = [int(k["1"][G]),int(k["2"][G])]
     elif all(c in k for c in "1"): bypuzz[l][n] = [int(k["1"][G]),int(k["1"][G])+1000000]
 
-LEN = len("joefarebrother") + len(str(DAY)) + 1
+LEN = len("Thien Udomsrirungruang") + len(str(DAY)) + 1
 
 print(" ".join((b+"").rjust(LEN) for b in ["part1","part2","delta"]))
 
