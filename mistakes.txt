@@ -18,3 +18,6 @@ messing around with input handling functions ; (part 2) off by 1 errors (wrong s
 
 Day 9
 Not moving the wrong answers file from yesterday; Looking for/at the sucess message in the autotest log
+
+Day 10
+(part 2) getting coordinates the wrong way round (ws), forgetting that one of the input characters wasn't a pipe (ws)
