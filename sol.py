@@ -39,10 +39,10 @@ class Pt(tuple):
         x,y=self
         return Pt((-y,x))
 dirs = {
-    "R":Pt((0,1)),
-    "U":Pt((1,0)),
-    "L":Pt((0,-1)),
-    "D":Pt((-1,0))
+    "R":Pt((1,0)),
+    "U":Pt((0,-1)),
+    "L":Pt((-1,0)),
+    "D":Pt((0,1))
     }
 ods = list(dirs.values())
 
