@@ -1,13 +1,12 @@
 #! /usr/bin/env python3
-#curl -A "<email> via curl" https://adventofcode.com/2023/leaderboard/day/[1-15] -O
+#curl -A "<email> via curl" https://adventofcode.com/2021/leaderboard/day/[1-15] -O
 
 import string
 from collections import defaultdict
-import time
 
 POINTLESS=[]
 
-DAYS=[i for i in list(range(1,10+1))]
+DAYS=[i for i in list(range(1,25+1))]
 
 def process(html):
     with open("../leaderboards/"+html) as f:
@@ -17,14 +16,13 @@ def process(html):
     for k in al:
         for i,row in enumerate(k):
             a = row.split("</span>")
-            pos,t,name = a[0],a[1],a[3]
+            pos,time,name = a[0],a[1],a[3]
             assert i+1 == int(pos[:3])
-            t = t.split('<span class="leaderboard-time">')[-1]
-            t=time.strptime(t,"%b %d  %H:%M:%S")
+            time = time.split('<span class="leaderboard-time">')[-1]
             if '<span class="leaderboard-anon">' in name:
                 name = name.split('>')[1]
             name = name.split('<')[0].strip()
-            k[i] = (t,name)
+            k[i] = (time,name)
     return al
 
 users = defaultdict(list)
@@ -121,14 +119,10 @@ print("My rank:",rank(lambda x: x.score))
 #printby((lambda x: x.score), n=150)
 me = muchdata["penteract"]
 
-for a in range(10):
-  for b in range(2):
-    if me.byday[a][b]==0:
-        print(a+1,b+1,rank((lambda x: x.score-x.byday[a][b])))
-
-#print(me.score2-me.score1)
-print(me.score)
+printby((lambda x: x.score2-x.score1*1.5), n=4)
 printby((lambda x: x.score2-x.score1), n=20)
+print(me.score2-me.score1)
+print(me.score)
 
 #[x for x in muchdata.values() if x.score>me.score and (x.score - x.byday[2-1][1]) < me.score and x.byday[2-1][1]< ]
 
