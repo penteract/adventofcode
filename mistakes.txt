@@ -21,3 +21,6 @@ Not moving the wrong answers file from yesterday; Looking for/at the sucess mess
 
 Day 10
 (part 2) getting coordinates the wrong way round (ws), forgetting that one of the input characters wasn't a pipe (ws)
+
+Day 11
+(part 2) off by 1 error (ws)
