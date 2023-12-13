@@ -24,3 +24,6 @@ Day 10
 
 Day 11
 (part 2) off by 1 error (ws)
+
+Day 13
+(part 1) changing the name of a variable between 2 copies of a loop. Incorrect initialization
