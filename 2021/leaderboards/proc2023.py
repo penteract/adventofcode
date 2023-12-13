@@ -7,7 +7,7 @@ import time
 
 POINTLESS=[]
 
-DAYS=[i for i in list(range(1,11+1))]
+DAYS=[i for i in list(range(1,25+1))]
 
 def process(html):
     with open("../leaderboards/"+html) as f:
@@ -136,6 +136,7 @@ top100 = sorted(ll,key=lambda x:x.score,reverse=True)[:100]
 
 print("number of top 100 who scored for a part:")
 for day in DAYS:
+    print("day",day,end=" ")
     for part in [0,1]:
         print(len([x for x in top100 if x.byday[day-1][part]>0 ]),end=" ")
     print()
