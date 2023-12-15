@@ -27,3 +27,6 @@ Day 11
 
 Day 13
 (part 1) changing the name of a variable between 2 copies of a loop. Incorrect initialization
+
+Day 14
+(part 2)Being slow handling indicies
