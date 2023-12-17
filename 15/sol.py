@@ -38,9 +38,6 @@ class Pt(tuple):
     def right(self):
         x,y=self
         return Pt((-y,x))
-def pt(*args):
-    if len(args)==1: return Pt(args[0])
-    else: return Pt(args)
 dirs = {
     "R":Pt((1,0)),
     "U":Pt((0,-1)),
@@ -68,11 +65,29 @@ except Exception: pass
 
 
 d=defaultdict(int)
-for y,line in enumerate(f):
-    for x,c in enumerate(line):
-        d[x,y]=c
 tot=0
 
 print(lmap(ints_locs,f))
 
-print(tot)
+r=0
+l = [{} for i in range(256)]
+for part in ftext.strip().split(","):
+    tot=0
+    i = max(part.find("-"),part.find("="))
+    lab=part[:i]
+    for c in part[:i]:
+        tot+=ord(c)
+        tot=(tot*17)%256
+    print(part,tot)
+    if i==len(part)-1:#-
+        if lab in l[tot]:
+            del l[tot][lab]
+    else:
+        f = int(part[i+1:])
+        l[tot][lab]=f
+    #r+=tot
+#print(ftext)
+for bx,k in enumerate(l):
+    for sn,f in enumerate(k):
+        r+=(bx+1)*(sn+1)*k[f]
+print(r)

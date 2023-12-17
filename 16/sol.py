@@ -38,9 +38,6 @@ class Pt(tuple):
     def right(self):
         x,y=self
         return Pt((-y,x))
-def pt(*args):
-    if len(args)==1: return Pt(args[0])
-    else: return Pt(args)
 dirs = {
     "R":Pt((1,0)),
     "U":Pt((0,-1)),
@@ -68,11 +65,51 @@ except Exception: pass
 
 
 d=defaultdict(int)
-for y,line in enumerate(f):
-    for x,c in enumerate(line):
-        d[x,y]=c
 tot=0
 
 print(lmap(ints_locs,f))
 
-print(tot)
+for y,line in enumerate(f):
+    for x,c in enumerate(line):
+        d[x,y]=c
+
+def count(pos,dr):
+    beams = [(pos,dr)]
+    seen = set()
+    s2=set()
+    for pos,dr in beams:
+        if (pos,dr)not in seen:
+            seen.add((pos,dr))
+            pos+=dr
+            if pos in d:
+                s2.add(pos)
+                c=d[pos]
+                if c=="/":
+                    beams.append((pos,(-dr[1],-dr[0])))
+                elif c=="\\" :
+                    beams.append((pos,(dr[1],dr[0])))
+                elif c=="-":
+                    if dr[0]==0:
+                        beams.append((pos,dirs["L"]))
+                        beams.append((pos,dirs["R"]))
+                    else:
+                        beams.append((pos,dr))
+                elif c=="|":
+                    if dr[1]==0:
+                        beams.append((pos,dirs["U"]))
+                        beams.append((pos,dirs["D"]))
+                    else:
+                        beams.append((pos,dr))
+                elif c==".":
+                    beams.append((pos,dr))
+                else:
+                    assert False,c
+    return (len(s2))
+l=[]
+print(len(f),len(f[0]))
+for i in range(len(f)):
+    l.append((Pt((-1,i)),dirs["R"]))
+    l.append((Pt((len(f[0]),i)),dirs["L"]))
+    l.append((Pt((i,-1)),dirs["D"]))
+    l.append((Pt((i,len(f))),dirs["U"]))
+print(max([count(p,dd) for p,dd in l]))

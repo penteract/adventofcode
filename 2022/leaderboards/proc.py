@@ -125,4 +125,4 @@ print(me.score2-me.score1)
 print(me.score)
 
 #[x for x in muchdata.values() if x.score>me.score and (x.score - x.byday[2-1][1]) < me.score and x.byday[2-1][1]< ]
-
+#printby(lambda x:x.score)
