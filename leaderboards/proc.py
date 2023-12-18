@@ -7,10 +7,17 @@ import time
 
 POINTLESS=[]
 
-DAYS=[i for i in list(range(1,11+1))]
 
+import sys,os
+print(sys.argv)
+path = sys.argv[1] if len(sys.argv)>1 else "../2021"
+if os.path.isdir(path+"/leaderboards/"):
+    path=path+"/leaderboards/"
+print(path)
+DAYS=[i for i in list(range(1,25+1)) if os.path.isfile(os.path.join(path,str(i)))]  
+print(DAYS)
 def process(html):
-    with open("../leaderboards/"+html) as f:
+    with open(os.path.join(path,html)) as f:
         raw = f.read()
     rows = raw.split('<span class="leaderboard-position">')
     al = rows[1:101],rows[101:201]
@@ -96,10 +103,10 @@ def printby(key,n=200):
         if i>n: break
         if x.score1<x.score2:count+=1
         
-        print(i,x)
+        print(i,key(x),x)
     print("number with greater p2 than p1:",count)
 
-print("My rank:",rank(lambda x: x.score))
+#print("My rank:",rank(lambda x: x.score))
 #print("Joe's rank:",rank((lambda x: x.score),"joefarebrother"))
 #printby(lambda x:sum(score(p) for p in x.snds if not (isintcode(p[1])) ),n=100)
 #print("Not intcode")
@@ -119,23 +126,30 @@ print("My rank:",rank(lambda x: x.score))
 ##  ),n=50)
 
 #printby((lambda x: x.score), n=150)
-me = muchdata["penteract"]
+#me = muchdata["penteract"]
 
-for a in range(10):
-  for b in range(2):
-    if me.byday[a][b]==0:
-        print(a+1,b+1,rank((lambda x: x.score-x.byday[a][b])))
+##for a in range(10):
+##  for b in range(2):
+##    if me.byday[a][b]==0:
+##        #print(a+1,b+1,rank((lambda x: x.score-x.byday[a][b])))
+##        pass
 
 #print(me.score2-me.score1)
-print(me.score)
-printby((lambda x: x.score2-x.score1), n=20)
+#print(me.score)
+#printby((lambda x: x.score2-x.score1), n=20)
+
 
 #[x for x in muchdata.values() if x.score>me.score and (x.score - x.byday[2-1][1]) < me.score and x.byday[2-1][1]< ]
 
 top100 = sorted(ll,key=lambda x:x.score,reverse=True)[:100]
 
-print("number of top 100 who scored for a part:")
 for day in DAYS:
-    for part in [0,1]:
-        print(len([x for x in top100 if x.byday[day-1][part]>0 ]),end=" ")
-    print()
+    bd = sorted(ll,key=lambda x:sum(sum(z) for z in x.byday[:day]),reverse=True)
+    print(day, sum(sum(z) for z in bd[99].byday[:day]))
+
+#print("number of top 100 who scored for a part:")
+#for day in DAYS:
+#    for part in [0,1]:
+#        print(len([x for x in top100 if x.byday[day-1][part]>0 ]),end=" ")
+#    print()
+

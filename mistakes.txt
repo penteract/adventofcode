@@ -30,3 +30,6 @@ Day 13
 
 Day 14
 (part 2) Being slow handling indicies
+
+Day 17
+(part 1) not turning strings into ints, assigning to a variable twice rather than making it a list with 2 elements

@@ -66,13 +66,66 @@ except Exception: pass
 try: xss = lmap(ints,f)
 except Exception: pass
 
+from heapq import *
+def ast(start,neighbs,done,h = lambda x:0):
+    """Finds the node n such that done(n) with minimal distance from an element of start.
+    neighbs(n) = [(nn,edgeweight)]
+    assumes h(n)<d(n,end) """
+    seen=set()
+    hq = []
+    for x in start:
+        print(hq,x)
+        heappush(hq,(h(x),(x,None),0))
+    while hq:
+        c,pth,d = heappop(hq)
+        n=pth[0]
+        if n not in seen:
+            #print(n)
+            seen.add(n)
+            if done(n):
+                return (pth,d)
+            for x,dst in neighbs(n):
+                if x not in seen:
+                    #print(repr(d),repr(dst),h(n))
+                    heappush(hq,(d+dst+h(n),(x,pth),d+dst))
+def prgrid(d):
+    xs = set(k[0] for k in d)
+    ys = set(k[1] for k in d)
+    for y in range(min(ys),max(s)+1):
+        for x in range(min(xs),max(xs)+1):
+            k=x,y
+            print(d[k] if d[k]!=0 else ".",end="")
+        print()
 
+def flatten(tup):
+    l=[]
+    while tup is not None:
+        l.append(tup[0])
+        tup=tup[1]
+    return l
+
+
+
+tot=0
 d=defaultdict(int)
 for y,line in enumerate(f):
     for x,c in enumerate(line):
-        d[x,y]=c
-tot=0
+        d[x,y]=int(c)
+start = [(pt(0,0),dirs["R"],1),(pt(0,0),dirs["D"],1)]
+end = (len(f)-1,len(f[0])-1)
+done = lambda x:x[0]==end
+#print(lmap(ints_locs,f))
 
-print(lmap(ints_locs,f))
+def nxts(pos):
+    rs=[]
+    p,dr,n=pos
+    if n<3:
+        rs.append((p+dr,dr,n+1))
+    for a in [1,-1]:
+        d2=pt(dr[1]*a,dr[0]*(-a))
+        rs.append((p+d2,d2,1))
+    return [(k,d[k[0]]) for k in rs if k[0] in d]
 
-print(tot)
+r=ast(start,nxts,done)
+print(r[0])
+print(r[1])

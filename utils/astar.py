@@ -2,7 +2,8 @@ from heapq import *
 def ast(start,neighbs,done,h = lambda x:0):
     """Finds the node n such that done(n) with minimal distance from an element of start.
     neighbs(n) = [(nn,edgeweight)]
-    assumes h(n)<d(n,end) """
+    assumes h(n)<d(n,end)
+    Returns the path as a lisp-style deeply nested tuple"""
     seen=set()
     hq = []
     for x in start:
