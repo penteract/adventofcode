@@ -36,3 +36,6 @@ Day 17
 
 Day 18
 (part 2) being slow to find a simple bug (using the wrong coordinate) ; trying to use a more complicated method than necessary
+
+Day 19
+It's not the thing that cost me the most time, but why on earth do eval and exec require globals to be a positional only argument?
