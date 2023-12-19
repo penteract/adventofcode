@@ -18,8 +18,14 @@ class I:
         x,e = self.s,self.e
         a,b = other.s,other.e
         return I(max(x,a),min(e,b))
+    def __or__(self,other):
+        x,e = self.s,self.e
+        a,b = other.s,other.e
+        return I(min(x,a),max(e,b))
     def __add__(self,k):
         return I(self.s+k,self.e+k)
+    def __str__(self):
+        return f"I({self.s},{self.e})"
     def __sub__(self,k):
         if isinstance(k,I):
             x,e = self.s,self.e

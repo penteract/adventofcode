@@ -33,3 +33,6 @@ Day 14
 
 Day 17
 (part 1) not turning strings into ints, assigning to a variable twice rather than making it a list with 2 elements
+
+Day 18
+(part 2) being slow to find a simple bug (using the wrong coordinate) ; trying to use a more complicated method than necessary
