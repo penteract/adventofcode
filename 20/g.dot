@@ -1,0 +1,123 @@
+digraph G
+{
+
+kv -> qb
+px -> qz
+px -> tk
+xk -> sv
+xk -> zv
+rj -> lx
+rj -> qz
+ks -> fc
+dx -> gt
+dx -> dr
+lz -> qz
+lz -> df
+dz -> fr
+broadcaster -> cn
+broadcaster -> xk
+broadcaster -> rj
+broadcaster -> gf
+ct -> ks
+hq -> bz
+qv -> cx
+qz -> vk
+qz -> qm
+qz -> rj
+qz -> kv
+qz -> hq
+qz -> tk
+jg -> qb
+cf -> sv
+cf -> tz
+dr -> cn
+dr -> jz
+dr -> tq
+dr -> ks
+dr -> mr
+dr -> ct
+mx -> bn
+bv -> sk
+bv -> kf
+cn -> dr
+cn -> mq
+vk -> lz
+jd -> qz
+qb -> rx
+tp -> sv
+tp -> lm
+jz -> ct
+tq -> tj
+bn -> sv
+bn -> cf
+br -> sk
+br -> hc
+gt -> dr
+gt -> nd
+nd -> dr
+nd -> nk
+rz -> qb
+lx -> qm
+lx -> qz
+sk -> qv
+sk -> kf
+sk -> rd
+sk -> qh
+sk -> jg
+sk -> gf
+mq -> jz
+mq -> dr
+rl -> bv
+rl -> sk
+tz -> sv
+tz -> ng
+df -> qz
+df -> jd
+tk -> hq
+mr -> qb
+gf -> rl
+gf -> sk
+qm -> nt
+sv -> xk
+sv -> rz
+sv -> zv
+sv -> dz
+sv -> mx
+hc -> sk
+hc -> nf
+xp -> br
+xp -> sk
+bc -> sv
+bc -> tp
+fc -> dr
+fc -> tq
+nf -> sk
+cx -> sk
+cx -> qh
+bz -> vk
+bz -> qz
+zv -> dz
+kf -> rd
+tj -> dr
+tj -> dx
+fr -> mx
+fr -> sv
+ng -> bc
+ng -> sv
+lm -> sv
+nk -> dr
+nt -> qz
+nt -> px
+qh -> xp
+rd -> qv
+
+kv [shape=hexagon]
+qz [shape=hexagon]
+jg [shape=hexagon]
+dr [shape=hexagon]
+qb [shape=hexagon]
+rz [shape=hexagon]
+sk [shape=hexagon]
+mr [shape=hexagon]
+sv [shape=hexagon]
+}
