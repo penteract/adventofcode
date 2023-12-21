@@ -39,3 +39,6 @@ Day 18
 
 Day 19
 It's not the thing that cost me the most time, but why on earth do eval and exec require globals to be a positional only argument?
+
+Day 21
+(part 2) reusing single letter variable names; not realising sooner that the year's theme is "Look at the input"
