@@ -42,3 +42,9 @@ It's not the thing that cost me the most time, but why on earth do eval and exec
 
 Day 21
 (part 2) reusing single letter variable names; not realising sooner that the year's theme is "Look at the input"
+
+day 22
+(part 1) incorrectly counting duplicates (using a list which should have been a set) (wrong submission)
+
+day 23
+bug in utils ; Plenty of other things

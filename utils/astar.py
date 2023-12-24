@@ -18,11 +18,11 @@ def ast(start,neighbs,done,h = lambda x:0):
                 return (pth,d)
             for x,dst in neighbs(n):
                 if x not in seen:
-                    heappush(hq,(d+dst+h(n),(x,pth),d+dst))
+                    heappush(hq,(d+dst+h(x),(x,pth),d+dst))
 def prgrid(d):
     xs = set(k[0] for k in d)
     ys = set(k[1] for k in d)
-    for y in range(min(ys),max(s)+1):
+    for y in range(min(ys),max(ys)+1):
         for x in range(min(xs),max(xs)+1):
             k=x,y
             print(d[k] if d[k]!=0 else ".",end="")

@@ -13,7 +13,7 @@ class I:
     def __len__(self):
         return self.e-self.s
     def __iter__(self):
-        return range(self.s,self.e)
+        return iter(range(self.s,self.e))
     def __and__(self,other):
         x,e = self.s,self.e
         a,b = other.s,other.e
@@ -25,6 +25,8 @@ class I:
     def __add__(self,k):
         return I(self.s+k,self.e+k)
     def __str__(self):
+        return f"I({self.s},{self.e})"
+    def __repr__(self):
         return f"I({self.s},{self.e})"
     def __sub__(self,k):
         if isinstance(k,I):
