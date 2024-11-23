@@ -91,8 +91,9 @@ for y,line in enumerate(f):
 es = [(k,e) for k in m for e in m[k] if k>e]
 
 import random
-def trial():
-    v = random.choice(list(m))
+def trial(v=None):
+    if v is None:
+        v = random.choice(list(m))
     st={v}
     nes = [x for x in m[v]]
     def isLoop(e):
@@ -117,19 +118,23 @@ def trial():
         for k in m[nes[ix]]:
             nes.append(k)
 r=0
-iters=100000
+iters=1000000
 print(
 f"""{len(m)} verts
 {len(es)} edges
 {len(es)*2/len(m)} average degree
 guess at the runtime {(2*len(m))**(3/(len(es)*2/len(m)))}
 """)
+v=None
 for i in range(iters):
-    if trial():
+    if v is None:
+        v = random.choice(list(m))
+    if trial(v):
         #e=ufdsget(next(iter(m)),res)
         #r = sum(ufdsget(x,res)==e for x in m)
         #print(r*(len(m)-r))
         r+=1
+        v=None
         #print(i,r)
     if bin(i).count("1")==1:
         print(i,r,end="")

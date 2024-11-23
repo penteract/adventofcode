@@ -95,6 +95,7 @@ def trial():
     st = {k:k for k in m}
     nes = [x for x in es]
     random.shuffle(nes)
+    res = [x for x in nes]
     def isLoop(e):
         return ufdsget(e[0],st)==ufdsget(e[1],st)
     for i in range(len(m)-2):
@@ -118,7 +119,7 @@ f"""{len(m)} verts
 guess at the runtime {(2*len(m))**(3/(len(es)*2/len(m)))}
 """)
 for i in range(iters):
-    if trial():
+    if k:=trial():
         #e=ufdsget(next(iter(m)),res)
         #r = sum(ufdsget(x,res)==e for x in m)
         #print(r*(len(m)-r))
