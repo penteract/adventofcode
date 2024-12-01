@@ -61,7 +61,7 @@ if len(fgroups)>1:
     fgs = [g.split("\n") for g in fgroups]
     fgns = [lmap(ints,g) for g in fgs]
 
-try: xs = lmap(int,f)
+try: xxs = lmap(int,f)
 except Exception: pass
 try: xss = lmap(ints,f)
 except Exception: pass
@@ -69,11 +69,19 @@ except Exception: pass
 xs=[]
 ys=[]#
 d=defaultdict(int)
-for y,line in enumerate(flns):    
+for y,line in enumerate(flns):
+    print(line)
+    a,b = ints(line)
+    xs.append(a)
+    ys.append(b)
+    
     for x,c in enumerate(line):
         d[x,y]=c
 tot=0
+for a,b in zip(sorted(xs),sorted(ys)):
+    tot+=abs(b-a)
     
+print(tot)
 #print(lmap(ints_locs,f))
 
 print(tot)
