@@ -3,3 +3,7 @@ Not removing the old automatically downloaded files
 
 Day 3
 Not realising part 1 had already been submitted successfully; Failing to get sample input quickly for part 2.
+
+Day 4:
+trying to break out of too many nested loops (part 2).
+  Lesson: use `else: break` for alternating quantifiers `else: continue; break` for non-alternating quantifiers.
