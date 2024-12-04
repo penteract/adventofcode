@@ -1,1 +1,5 @@
+Day 1
 Not removing the old automatically downloaded files
+
+Day 3
+Not realising part 1 had already been submitted successfully; Failing to get sample input quickly for part 2.
