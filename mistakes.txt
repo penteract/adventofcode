@@ -7,3 +7,6 @@ Not realising part 1 had already been submitted successfully; Failing to get sam
 Day 4:
 trying to break out of too many nested loops (part 2).
   Lesson: use `else: break` for alternating quantifiers `else: continue; break` for non-alternating quantifiers.
+
+Day 5:
+Being distracted and not starting on time (30s)
