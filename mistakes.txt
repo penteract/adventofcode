@@ -10,3 +10,6 @@ trying to break out of too many nested loops (part 2).
 
 Day 5:
 Being distracted and not starting on time (30s)
+
+Day 7:
+getting variable names wrong, bad variable naming
