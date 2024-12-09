@@ -1,7 +1,8 @@
 import re
 from typing import Tuple, Callable, Iterable, Optional
 import sys
-import math,functools,itertools
+import math
+lts  = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890"
 fname=sys.argv[1] if len(sys.argv)>1 else "input"
 f = open(fname)
 ftext=f.read()
@@ -70,16 +71,36 @@ except Exception: pass
 xs=[]
 ys=[]#
 d=defaultdict(int)
+lp=defaultdict(list)
 for y,line in enumerate(flns):    
     for x,c in enumerate(line):
-        d[x,y]=c
+        d[x,y] = c
+        if c in lts:
+            lp[c].append(Pt((x,y)))
+lls = set(d)
+ps = set()
+for c in lp:
+    ks = lp[c]
+    #print(ks)
+    for i,k in enumerate(ks):
+        #print(i,ks[i+1:])
+        for j in ks[i+1:]:
+            print(k,j)
+            a = math.gcd(*(k-j))
+            dl = Pt(x//a for x in (k-j))
+            for i in [1,-1]:
+                h=0
+
+                while k+h*dl in lls:
+                    print(k+h*dl)
+                    ps.add(k+h*dl)
+                    h+=i
+
 tot=0
     
 #print(lmap(ints_locs,f))
-
-print(tot)
-
-
+print(ps)
+print(len(lls.intersection(ps)))
 
 
 

@@ -13,3 +13,7 @@ Being distracted and not starting on time (30s)
 
 Day 7:
 getting variable names wrong, bad variable naming
+
+Day 8:
+getting order for scalar multiplication of Pt the wrong way round
+Not knowing itertools.combinations off the top of my head
