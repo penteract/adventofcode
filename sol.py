@@ -67,8 +67,7 @@ except Exception: pass
 try: xss = lmap(ints,f)
 except Exception: pass
 
-xs=[]
-ys=[]#
+
 d=defaultdict(int)
 for y,line in enumerate(flns):    
     for x,c in enumerate(line):
