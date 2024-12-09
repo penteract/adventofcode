@@ -73,10 +73,31 @@ for y,line in enumerate(flns):
     for x,c in enumerate(line):
         d[x,y]=c
 tot=0
-    
+
+
+l=[]
+#d=[]
+f=True
+n=0
+for c in ftext.strip():
+    x = int(c)
+    for k in range(x):
+        if f:
+            l.append(n)
+        else:
+            l.append(-1)
+    if f:
+        n+=1
+    f = not f
+print(l)
+try:
+    while ps := l.index(-1):
+        l[ps] = l.pop()
+except Exception:
+    pass
 #print(lmap(ints_locs,f))
 
-print(tot)
+print(sum(a*b for a,b in enumerate(l)))
 
 
 

@@ -17,3 +17,8 @@ getting variable names wrong, bad variable naming
 Day 8:
 getting order for scalar multiplication of Pt the wrong way round
 Not knowing itertools.combinations off the top of my head
+
+Day 9:
+part 2:
+  getting if branches the wrong way round
+  incorrect optimisation (wrong submission)
