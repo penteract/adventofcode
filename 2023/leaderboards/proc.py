@@ -10,7 +10,7 @@ POINTLESS=[]
 
 import sys,os
 print(sys.argv)
-path = sys.argv[1] if len(sys.argv)>1 else "."
+path = sys.argv[1] if len(sys.argv)>1 else "../2021"
 if os.path.isdir(path+"/leaderboards/"):
     path=path+"/leaderboards/"
 print(path)
