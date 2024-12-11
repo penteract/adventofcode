@@ -98,21 +98,13 @@ def f(k):
         nx.append(str(int(k)*2024))
     return nx
 
-
-ld = len(d)
-
-for i in range(17500000):
+for i in range(75):
     nd = defaultdict(int)
     for c in d:
         for x in f(c):
             nd[x]+=d[c]
     d=nd
-    if ld != len(d):
-        ld = len(d)
-        continue
-    break
 
-print(len(d))
 print(sum(d[k] for k in d))
 
 
