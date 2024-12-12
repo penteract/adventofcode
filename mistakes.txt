@@ -22,3 +22,10 @@ Day 9:
 part 2:
   getting if branches the wrong way round
   incorrect optimisation (wrong submission)
+
+Day 11:
+(part2) Pasting the wrong bit of output because the autotester didn't work (ws)
+
+Day 12:
+Being a bit too tired; a bunch of minor bugs
+(part 2) putting a line of code in the wrong branch of a conditional.
