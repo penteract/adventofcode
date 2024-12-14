@@ -66,14 +66,53 @@ try: xs = lmap(int,f)
 except Exception: pass
 try: xss = lmap(ints,f)
 except Exception: pass
+from heapq import *
 
-tot=0
+def ast(start,neighbs,done,h = lambda x:0):
+    """Finds the node n such that done(n) with minimal distance from an element of start.
+    neighbs(n) = [(nn,edgeweight)]
+    assumes h(n)<d(n,end)
+    Returns the path as a lisp-style deeply nested tuple"""
+    seen=set()
+    hq = []
+    for x in start:
+        heappush(hq,(h(x),(x,None),0))
+    while hq:
+        c,pth,d = heappop(hq)
+        n=pth[0]
+        if n not in seen:
+            #print(n)
+            seen.add(n)
+            if done(n):
+                return (pth,d)
+            for x,dst in neighbs(n):
+                if x not in seen:
+                    heappush(hq,(d+dst+h(x),(x,pth),d+dst))
+
 d=defaultdict(int)
 
+prbs = []
+flns = xss
+tot=0
+for a,b,p,uu in zip(flns[0::4],flns[1::4],flns[2::4],flns[3::4]):
+    da = Pt(a)
+    db = Pt(b)
+    p = Pt(p)
+    nbs = (lambda pt: [x for x in [(pt+da,3), (pt+db,1)] if x[0][0]<=p[0] and x[0][1]<=p[1]])
+    done = lambda x:x==p
+    start = [Pt((0,0))]
+    r = ast(start,nbs,done)
+    if r is not None:
+        pth,dst = r
+        tot+=dst
+    #print(a,b,p)
+    
+#print(lmap(ints_locs,f))
 
-for y,line in enumerate(flns):    
-    for x,c in enumerate(line):
-        d[x,y]=c
+
+
+
+
 
 print(tot)
 
