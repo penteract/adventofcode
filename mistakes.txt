@@ -40,3 +40,6 @@ Day 14:
 (part 2) forgetting to change 100 to i
 (part 2) prgrid in u.py doesn't work with my current method of defining grids
 (part 2) utils/crt.py doesn't actually contain an easy to use crt(Chinese Remainder Theorem) function (naiveMinCRT would have worked)
+
+Day 16:
+not thinking through the runtime of modifications to A*
