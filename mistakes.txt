@@ -35,3 +35,8 @@ Day 13:
 (part 2 (?)) `for a,b,p,_ in zip(flns[0::4],flns[1::4],flns[2::4],flns[3::4])` misses the last group since there isn't a final blank line (ws*2)
 (part 2) using sympy to solve part of the problem when it could have solved the whole problem (ws*2)
 not counting the number of digits when deciding if an answer wasn't too low (ws)
+
+Day 14:
+(part 2) forgetting to change 100 to i
+(part 2) prgrid in u.py doesn't work with my current method of defining grids
+(part 2) utils/crt.py doesn't actually contain an easy to use crt(Chinese Remainder Theorem) function (naiveMinCRT would have worked)
