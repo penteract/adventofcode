@@ -43,3 +43,7 @@ Day 14:
 
 Day 16:
 not thinking through the runtime of modifications to A*
+
+Day 17:
+Not waking up until 6 minutes after the start
+(part 1) not increasing ip
