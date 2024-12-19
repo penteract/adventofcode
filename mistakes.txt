@@ -47,3 +47,7 @@ not thinking through the runtime of modifications to A*
 Day 17:
 Not waking up until 6 minutes after the start
 (part 1) not increasing ip
+
+Day 18
+Not reading the question fully
+(part 2) implementing binary search was probably slower than just running a linear one
