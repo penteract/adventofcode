@@ -51,3 +51,7 @@ Not waking up until 6 minutes after the start
 Day 18
 Not reading the question fully
 (part 2) implementing binary search was probably slower than just running a linear one
+
+Day 20:
+-(b+c-a) != a-b+c (ws)
+(part 2) testing cheats <20 rather than <=20 (ws)
