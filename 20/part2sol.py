@@ -123,7 +123,7 @@ r=[]
 for k1 in l:
     for k2 in l:
         dst = abs(k1[0]-k2[0])+abs(k1[1]-k2[1])
-        if abs(k1[0]-k2[0])+abs(k1[1]-k2[1]) <= 2:
+        if abs(k1[0]-k2[0])+abs(k1[1]-k2[1]) <= 20:
             if dStart[k1]+dst+dEnd[k2] < ds:
                 r.append(ds - (dStart[k1]+dst+dEnd[k2]))
 

@@ -124,23 +124,30 @@ ast([start],neighbs,done = lambda x:False)
 #ds = dEnd[start]
 #print(dists[start])
 
+mnchk= 100 # minimum time save
+chsz = 20 # cheat size
+
 #print([(x,dists[x]) for x in path])
 #raise Exception()
 result = 0
 for i,k1 in enumerate(path):
-    j=i+100
+    d1 = dists[k1]
+    j=i+mnchk
+    if j>len(path):
+        break
+    print("."*i,end="")
     while j<len(path):
         k2 = path[j]
+        d1 = dists[k2]
         ds = abs(k1[0]-k2[0])+abs(k1[1]-k2[1])
-        if ds <=20:
-            if (j-i)-ds>=100:
-                k = min(20-ds, len(path)-1-j)
-                result+=1+k
-                j+=k
-            j+=1
+        if ds<=chsz  and (j-i)-ds>=mnchk:
+            result+=1
+            print("#",end="")
         else:
-            j+=ds-20
-print(result)
+            print(".",end="")
+        j+=1
+    print("."*2)
+#print(result)
 
 
 

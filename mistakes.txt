@@ -55,3 +55,7 @@ Not reading the question fully
 Day 20:
 -(b+c-a) != a-b+c (ws)
 (part 2) testing cheats <20 rather than <=20 (ws)
+
+
+Day 22:
+defaultdicts use memory when you access default elements

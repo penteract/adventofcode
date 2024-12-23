@@ -70,77 +70,68 @@ except Exception: pass
 tot=0
 d=defaultdict(int)
 
+def f(k):
+    k^=k*64
+    k%=16777216
+    k^=(k//32)
+    k%=16777216
+    k^=k*2048
+    k%=16777216
+    return k
 
-from heapq import *
+r=[]
+for k in xs:
+    #print(k)
+    r.append([k%10])
+    for i in range(2000):
+        k=f(k)
+        r[-1].append(k%10)
+    tot+=k
 
-dists = {}
-path = []
-def ast(start,neighbs,done,h = lambda x:0):
-    """Finds the node n such that done(n) with minimal distance from an element of start.
-    neighbs(n) = [(nn,edgeweight)]
-    assumes h(n)<d(n,end)
-    Returns the path as a lisp-style deeply nested tuple"""
-    seen=set()
-    hq = []
-    for x in start:
-        heappush(hq,(h(x),(x,None),0))
-    while hq:
-        c,pth,d = heappop(hq)
-        n=pth[0]
-        dists[n] = d
-        if n not in seen:
-            #print(n)
-            seen.add(n)
-            if mp[n]!="#":
-                path.append(n)
-            if done(n):
-                return (pth,d)
-            for x,dst in neighbs(n):
-                if x not in seen:
-                    heappush(hq,(d+dst+h(x),(x,pth),d+dst))
 
-for y,line in enumerate(flns):
-    for x,c in enumerate(line):
-        d[x,y]=c
-        if c=="S":
-            start = x,y
-        if c=="E":
-            end = (x,y)
+r2=[]
+x=r[1]
+ds = [b-a for a,b in zip(x,x[1:])]
+#print(ds)
+print("a")
+print(len(ds))
+print(len(x))
+for x in r:
+    r2.append({})
+    ds = [b-a for a,b in zip(x,x[1:])]
+    for a,b,c,d,k in reversed(list(zip(*[x for x in [ds,ds[1:-2],ds[2:-1],ds[3:],x[1+3:]]]) ) ):
+        #if (a,b,c,d) == (-2,1,-1,3):
+            #print(k)
+        r2[-1][a,b,c,d] = k
+r=None
+print("b")
+mx=0
+i=0
+for a,b,c,e in itertools.product(*(range(-9,10) for i in range(4))):
+    i+=1
+    mz = sum(d[a,b,c,e] if (a,b,c,e) in d else 0 for d in r2)
+    if i%10000==0:
+        print(i)
+    if mx<mz:
+        r=a,b,c,e
+        mx=max(mz,mx)
+#print([d[-2,1,-1,3] for d in r2])
 
-mp=d
-l = [x for x in d if d[x] in list(".SE")]
+#print(r,mx)
 
-def neighbs(p):
-    if d[p] in list(".SE"):
-        for dr in ods:
-            yield (p+dr,1)
 
-#ast([end],neighbs,done = lambda x:False)
-#dEnd=dists
-#dists={}
-ast([start],neighbs,done = lambda x:False)
-#dStart=dists
-#print (dists)
-#ds = dEnd[start]
-#print(dists[start])
 
-#print([(x,dists[x]) for x in path])
-#raise Exception()
-result = 0
-for i,k1 in enumerate(path):
-    j=i+100
-    while j<len(path):
-        k2 = path[j]
-        ds = abs(k1[0]-k2[0])+abs(k1[1]-k2[1])
-        if ds <=20:
-            if (j-i)-ds>=100:
-                k = min(20-ds, len(path)-1-j)
-                result+=1+k
-                j+=k
-            j+=1
-        else:
-            j+=ds-20
-print(result)
+print(mx)
+
+
+
+
+
+
+
+
+
+
 
 
 
