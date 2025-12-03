@@ -3,3 +3,6 @@ crossing between 99 and 0 is not the same as reaching 0 (ws)
 
 Day 2
 Using a liveusb
+
+Day 3
+s[:-n] doesn't do what's intended when n reaches 0
