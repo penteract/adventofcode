@@ -289,7 +289,7 @@ def find_examples(part):
     return [("input1",sampleout)]
 
 
-def asksub():
+def asksub(answer):
     ans="?"
     while ans not in "nN":
         ans = input("Do you want to submit "+repr(answer)+" (y/n)?")
@@ -357,7 +357,7 @@ def doPart(part=None):
                 print(repr(answer),
                       f"is too low; as {bad_toolow} was. Not submitting.")
             else:
-                if not bad_answers or asksub():
+                if not bad_answers or asksub(answer):
                     print("submitting answer:",repr(answer))
                     resp,content = submit(part=part,answer=answer)
                     if "That's the right answer!" in content:
