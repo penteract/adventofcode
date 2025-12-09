@@ -39,6 +39,8 @@ class Pt(tuple):
     def right(self):
         x,y=self
         return Pt((-y,x))
+    def sz(self):
+        return sum(x*x for x in self)
 def pt(*args):
     if len(args)==1: return Pt(args[0])
     else: return Pt(args)
@@ -68,14 +70,38 @@ try: xss = lmap(ints,f)
 except Exception: pass
 
 tot=0
-d=defaultdict(int)
+#d=defaultdict(labmda x:x)
 
-
+l=[]
 for y,line in enumerate(flns):
-    for x,c in enumerate(line):
-        d[x,y]=c
+    l.append( pt(ints(line)))
+print(len(l))
 
-print(tot)
+def ufdsget(x,st):
+    k = st[x]
+    if k==x:
+        return x
+    else:
+        k=ufdsget(k,st)
+        st[x]=k
+        return k
+
+def ufdsjoin(x,y,st):
+    st[ufdsget(x,st)]=ufdsget(y,st)
+d={x:x for x in l}
+
+ss=[((a-b).sz(),a,b)  for i,a in enumerate(l) for b in l[i+1:]]
+ss.sort()
+for a,b,c in ss[:1000 if fname=="input" else 10]:
+    ufdsjoin(b,c,d)
+d2=defaultdict(int)
+for x in l:
+    #print(x)
+    d2[ufdsget(x,d)]+=1
+
+s=sorted(d2.values())
+a,b,c=s[-3:]
+print(a*b*c)
 
 
 
