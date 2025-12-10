@@ -70,12 +70,15 @@ except Exception: pass
 tot=0
 d=defaultdict(int)
 
-
+l=[]
 for y,line in enumerate(flns):
-    ins = ints(line)
-    for x,c in enumerate(line):
-        d[x,y]=c
+    ins = pt(ints(line))
+    d[ins]=1
+    l.append(ins)
 
+for a in l:
+    for b in l:
+        tot=max(tot, (1+abs(a[0]-b[0]))*(abs(a[1]-b[1])+1))
 print(tot)
 
 
